@@ -2,8 +2,10 @@
   from = "/admin/*"
   to = "/admin/index.html"
   status = 200
+  force = false
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = false
