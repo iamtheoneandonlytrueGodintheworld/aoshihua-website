@@ -1,0 +1,156 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# 若使用 GitHub OAuth 直接认证，可将上方 backend 替换为：
+# backend:
+#   name: github
+#   repo: 你的GitHub用户名/仓库名
+#   branch: main
+
+media_folder: public/images
+public_folder: /images
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: company
+    label: 公司信息
+    files:
+      - label: 基本信息
+        name: company
+        file: public/content/company.json
+        fields:
+          - { label: 公司名称, name: name, widget: string }
+          - { label: 口号, name: slogan, widget: string }
+          - { label: 公司简介, name: description, widget: text }
+          - { label: 联系电话, name: phone, widget: string }
+          - { label: 电子邮箱, name: email, widget: string }
+          - { label: 公司地址, name: address, widget: string }
+          - { label: 成立年份, name: foundedYear, widget: number }
+          - label: 企业价值观
+            name: values
+            widget: list
+            fields:
+              - { label: 标题, name: title, widget: string }
+              - { label: 描述, name: desc, widget: text }
+          - label: 发展历程
+            name: milestones
+            widget: list
+            fields:
+              - { label: 年份, name: year, widget: string }
+              - { label: 标题, name: title, widget: string }
+              - { label: 描述, name: desc, widget: text }
+          - label: 荣誉资质
+            name: honors
+            widget: list
+            fields:
+              - { label: 标题, name: title, widget: string }
+              - { label: 描述, name: desc, widget: string }
+          - label: 核心数据
+            name: stats
+            widget: list
+            fields:
+              - { label: 数值, name: value, widget: number }
+              - { label: 后缀, name: suffix, widget: string }
+              - { label: 标签, name: label, widget: string }
+
+  - name: home
+    label: 首页配置
+    files:
+      - label: 首页
+        name: home
+        file: public/content/home.json
+        fields:
+          - { label: 主标题, name: heroTitle, widget: string }
+          - { label: 副标题, name: heroSubtitle, widget: string }
+          - { label: 背景图, name: heroBackground, widget: image }
+          - { label: 主按钮文字, name: ctaPrimary, widget: string }
+          - { label: 次按钮文字, name: ctaSecondary, widget: string }
+          - { label: 简介图片, name: introImage, widget: image }
+          - { label: 简介文字, name: aboutText, widget: text }
+
+  - name: products
+    label: 产品管理
+    files:
+      - label: 产品数据
+        name: products
+        file: public/content/products.json
+        fields:
+          - label: 产品分类
+            name: categories
+            widget: list
+            fields:
+              - { label: 分类标识, name: key, widget: string }
+              - { label: 分类名称, name: name, widget: string }
+          - label: 产品列表
+            name: products
+            widget: list
+            fields:
+              - { label: 产品ID, name: id, widget: string }
+              - { label: URL标识, name: slug, widget: string }
+              - { label: 产品名称, name: name, widget: string }
+              - { label: 分类标识, name: category, widget: string }
+              - { label: 分类名称, name: categoryName, widget: string }
+              - { label: 产品摘要, name: summary, widget: text }
+              - { label: 产品详情, name: description, widget: markdown }
+              - { label: 产品图片, name: image, widget: image }
+              - label: 技术参数
+                name: parameters
+                widget: list
+                fields:
+                  - { label: 参数名称, name: label, widget: string }
+                  - { label: 参数值, name: value, widget: string }
+              - label: 产品特点
+                name: features
+                widget: list
+                field: { label: 特点, name: feature, widget: string }
+              - { label: 应用场景, name: application, widget: text }
+
+  - name: articles
+    label: 文章管理
+    files:
+      - label: 文章数据
+        name: articles
+        file: public/content/articles.json
+        fields:
+          - label: 文章分类
+            name: categories
+            widget: list
+            field: { label: 分类, name: category, widget: string }
+          - label: 文章列表
+            name: articles
+            widget: list
+            fields:
+              - { label: 文章ID, name: id, widget: string }
+              - { label: URL标识, name: slug, widget: string }
+              - { label: 文章标题, name: title, widget: string }
+              - { label: 文章摘要, name: summary, widget: text }
+              - { label: 正文内容, name: content, widget: markdown }
+              - { label: 封面图, name: cover, widget: image, required: false }
+              - { label: 所属分类, name: category, widget: string }
+              - { label: 发布时间, name: publishedAt, widget: datetime, date_format: YYYY-MM-DD, time_format: false }
+              - label: 标签
+                name: tags
+                widget: list
+                field: { label: 标签, name: tag, widget: string }
+
+  - name: chat
+    label: 客服知识库
+    files:
+      - label: 知识库
+        name: chat-knowledge
+        file: public/content/chat-knowledge.json
+        fields:
+          - { label: 欢迎消息, name: welcomeMessage, widget: string }
+          - { label: 未知问题回复, name: fallbackMessage, widget: text }
+          - { label: 人工转接提示, name: humanHandoffMessage, widget: text }
+          - label: 问答知识
+            name: knowledge
+            widget: list
+            fields:
+              - label: 匹配关键词
+                name: keywords
+                widget: list
+                field: { label: 关键词, name: keyword, widget: string }
+              - { label: 回复内容, name: response, widget: text }
