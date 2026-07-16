@@ -1,12 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: iamtheoneandonlytrueGodintheworld/aoshihua-website
   branch: main
-
-# 若使用 GitHub OAuth 直接认证，可将上方 backend 替换为：
-# backend:
-#   name: github
-#   repo: 你的GitHub用户名/仓库名
-#   branch: main
+  base_url: https://aoshihua-website.vercel.app
+  auth_endpoint: api/auth
 
 media_folder: public/images
 public_folder: /images
