@@ -4,7 +4,11 @@
   ],
   "rewrites": [
     { "source": "/admin/", "destination": "/admin/index.html" },
-    { "source": "/admin/(?!config\\.yml).*", "destination": "/admin/index.html" },
-    { "source": "/((?!admin/|content/|images/).*)", "destination": "/index.html" }
+    { "source": "/admin/config.yml", "destination": "/admin/config.yml" },
+    { "source": "/admin/:path*", "destination": "/admin/index.html" },
+    { "source": "/content/:path*", "destination": "/content/:path*" },
+    { "source": "/images/:path*", "destination": "/images/:path*" },
+    { "source": "/api/:path*", "destination": "/api/:path*" },
+    { "source": "/:path*", "destination": "/index.html" }
   ]
 }
