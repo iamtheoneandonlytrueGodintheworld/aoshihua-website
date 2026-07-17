@@ -82,30 +82,35 @@ export default async function handler(req: any, res: any) {
   <body>
     <script>
       (function() {
-        var payload = ${JSON.stringify(payload)};
-        function sendAuth() {
-          console.log("[oauth-callback] payload ready");
-          console.log("[oauth-callback] window.opener =", window.opener);
-          console.log("[oauth-callback] window.name =", window.name);
-          console.log("[oauth-callback] href =", window.location.href);
-          console.log("[oauth-callback] userAgent =", navigator.userAgent);
+        var payload = JSON.stringify({
+          token: ${JSON.stringify(token.access_token)},
+          provider: "github"
+        });
+        var msg = "authorization:github:success:" + payload;
 
-          if (!window.opener) {
-            document.body.innerHTML =
-              "<h1>授权成功，但无法联系到主窗口</h1>" +
-              "<p>window.opener 为 null，请按 F12 打开控制台，把日志截图发给开发者。</p>" +
-              "<p>浏览器：" + navigator.userAgent + "</p>";
-            return;
-          }
-
-          window.opener.postMessage(
-            "authorization:github:success:" + payload,
-            "*"
-          );
-          console.log("[oauth-callback] postMessage sent");
+        function sendToken(origin) {
+          console.log("[oauth-callback] sending token to origin:", origin);
+          window.opener.postMessage(msg, origin || "*");
           setTimeout(function() { window.close(); }, 500);
         }
-        sendAuth();
+
+        function receiveMessage(e) {
+          console.log("[oauth-callback] received:", e.data, "from", e.origin);
+          if (e.data === "authorizing:github") {
+            sendToken(e.origin);
+          }
+        }
+
+        if (!window.opener) {
+          document.body.innerHTML =
+            "<h1>授权成功，但无法联系到主窗口</h1>" +
+            "<p>window.opener 为 null，请按 F12 打开控制台，把日志截图发给开发者。</p>";
+          return;
+        }
+
+        window.addEventListener("message", receiveMessage, false);
+        console.log("[oauth-callback] handshake: authorizing:github");
+        window.opener.postMessage("authorizing:github", "*");
       })();
     </script>
   </body>
