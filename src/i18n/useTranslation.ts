@@ -18,10 +18,10 @@ export function useTranslation() {
   const { locale } = useLanguage();
 
   const t = (key: string): string => {
-    const value = getNestedValue(translations[locale] as Record<string, unknown>, key);
+    const value = getNestedValue(translations[locale] as unknown as Record<string, unknown>, key);
     if (value) return value;
     // Fallback to Chinese if translation missing
-    const fallback = getNestedValue(translations.zh as Record<string, unknown>, key);
+    const fallback = getNestedValue(translations.zh as unknown as Record<string, unknown>, key);
     return fallback ?? key;
   };
 
