@@ -12,7 +12,7 @@ export default function About() {
       <div className="pt-20">
         <section className="bg-navy-900 py-16 md:py-24">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-3xl md:text-5xl font-bold text-white font-display">关于华威</h1>
+            <h1 className="text-3xl md:text-5xl font-bold text-white font-display">关于奥世华</h1>
           </div>
         </section>
         <Loading />
@@ -34,7 +34,7 @@ export default function About() {
       <section className="bg-navy-900 py-16 md:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl md:text-5xl font-bold text-white font-display animate-fade-up">
-            关于华威
+            关于奥世华
           </h1>
           <p className="mt-4 text-navy-300 max-w-2xl mx-auto animate-fade-up">
             十六年深耕饲料机械行业，以技术创新驱动发展，以品质服务赢得客户信赖
@@ -118,7 +118,7 @@ export default function About() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             title="发展历程"
-            subtitle="见证华威制造的成长足迹"
+            subtitle="见证奥世华机械的成长足迹"
           />
           <div className="mt-14 max-w-4xl mx-auto">
             {companyInfo.milestones.map((milestone, index) => (

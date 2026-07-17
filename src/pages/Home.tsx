@@ -101,7 +101,7 @@ export default function Home() {
               <div className="relative">
                 <img
                   src={homeConfig.introImage}
-                  alt="华威制造工厂"
+                  alt="奥世华机械工厂"
                   className="rounded-2xl shadow-2xl"
                 />
                 <div className="absolute -bottom-6 -right-6 bg-brand-500 text-white p-6 rounded-xl shadow-xl hidden md:block">
@@ -113,7 +113,7 @@ export default function Home() {
             <div>
               <ScrollReveal>
                 <span className="text-brand-600 font-semibold text-sm uppercase tracking-wider">
-                  关于华威
+                  关于奥世华
                 </span>
                 <h2 className="mt-3 text-3xl md:text-4xl font-bold text-navy-900 font-display">
                   专注饲料机械，守护每一口饲料的品质
@@ -156,7 +156,7 @@ export default function Home() {
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <SectionTitle
-            title="为什么选择华威"
+            title="为什么选择奥世华"
             subtitle="以匠心铸就品质，以服务赢得信赖"
             light
           />

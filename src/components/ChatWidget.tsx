@@ -23,7 +23,7 @@ export default function ChatWidget() {
   const { data: chatData, isLoading: chatLoading } = useChatKnowledge();
   const { data: companyInfo } = useCompany();
 
-  const welcomeMessage = chatData?.welcomeMessage || "您好，欢迎来到华威制造！请问有什么可以帮您？";
+  const welcomeMessage = chatData?.welcomeMessage || "您好，欢迎来到奥世华机械！请问有什么可以帮您？";
   const fallbackMessage = chatData?.fallbackMessage || "抱歉，我暂时无法回答这个问题，您可以留下联系方式转人工。";
   const humanHandoffMessage = chatData?.humanHandoffMessage || "已为您转接人工服务，请留下联系方式。";
   const knowledge = chatData?.knowledge || [];
@@ -100,7 +100,7 @@ export default function ChatWidget() {
               <Bot size={20} />
             </div>
             <div>
-              <h3 className="text-white font-semibold text-sm">华威智能客服</h3>
+              <h3 className="text-white font-semibold text-sm">奥世华智能客服</h3>
               <p className="text-navy-300 text-xs flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
                 在线

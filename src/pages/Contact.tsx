@@ -36,10 +36,10 @@ export default function Contact() {
     );
   }
 
-  const companyName = companyInfo?.name || "华威制造有限公司";
+  const companyName = companyInfo?.name || "奥世华机械制造有限公司";
   const companyPhone = companyInfo?.phone || "400-888-6688";
-  const companyEmail = companyInfo?.email || "sales@huaweimfg.com";
-  const companyAddress = companyInfo?.address || "江苏省常州市武进区高新技术产业开发区华威路 88 号";
+  const companyEmail = companyInfo?.email || "sales@aoshihua-mfg.com";
+  const companyAddress = companyInfo?.address || "江苏省常州市武进区高新技术产业开发区奥世华路 88 号";
 
   return (
     <div className="pt-20">

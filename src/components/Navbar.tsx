@@ -27,7 +27,7 @@ export default function Navbar() {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
-  const companyName = companyInfo?.name || "华威制造";
+  const companyName = companyInfo?.name || "奥世华机械";
   const companyPhone = companyInfo?.phone || "#";
 
   return (
