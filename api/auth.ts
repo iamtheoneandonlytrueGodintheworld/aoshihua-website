@@ -70,11 +70,7 @@ export default async function handler(req: any, res: any) {
         return;
       }
 
-      const originPattern = siteId.replace(/\./g, "\\.");
-      const payload = JSON.stringify({
-        provider: "github",
-        token: token.access_token,
-      });
+      const payload = JSON.stringify({ token: token.access_token });
 
       res.setHeader("Content-Type", "text/html; charset=utf-8");
       res.status(200).send(`<!doctype html>
@@ -83,18 +79,18 @@ export default async function handler(req: any, res: any) {
   <body>
     <script>
       (function() {
-        function receiveMessage(e) {
-          if (!e.origin.match(new RegExp("^https?://" + ${JSON.stringify(originPattern)} + "$"))) {
-            console.log("Invalid origin:", e.origin);
+        function sendAuth() {
+          if (!window.opener) {
+            document.body.innerText = "授权成功，请关闭此窗口";
             return;
           }
           window.opener.postMessage(
             "authorization:github:success:${payload}",
-            e.origin
+            "*"
           );
+          setTimeout(function() { window.close(); }, 500);
         }
-        window.addEventListener("message", receiveMessage, false);
-        window.opener.postMessage("authorizing:github", "*");
+        sendAuth();
       })();
     </script>
   </body>
