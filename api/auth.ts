@@ -82,15 +82,27 @@ export default async function handler(req: any, res: any) {
   <body>
     <script>
       (function() {
+        var payload = ${JSON.stringify(payload)};
         function sendAuth() {
+          console.log("[oauth-callback] payload ready");
+          console.log("[oauth-callback] window.opener =", window.opener);
+          console.log("[oauth-callback] window.name =", window.name);
+          console.log("[oauth-callback] href =", window.location.href);
+          console.log("[oauth-callback] userAgent =", navigator.userAgent);
+
           if (!window.opener) {
-            document.body.innerText = "授权成功，请关闭此窗口";
+            document.body.innerHTML =
+              "<h1>授权成功，但无法联系到主窗口</h1>" +
+              "<p>window.opener 为 null，请按 F12 打开控制台，把日志截图发给开发者。</p>" +
+              "<p>浏览器：" + navigator.userAgent + "</p>";
             return;
           }
+
           window.opener.postMessage(
-            "authorization:github:success:" + ${JSON.stringify(payload)},
+            "authorization:github:success:" + payload,
             "*"
           );
+          console.log("[oauth-callback] postMessage sent");
           setTimeout(function() { window.close(); }, 500);
         }
         sendAuth();
