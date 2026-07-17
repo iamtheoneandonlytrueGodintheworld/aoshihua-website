@@ -32,7 +32,7 @@ export default function Navbar() {
 
   const companyName = companyInfo?.name || (t("nav.langZh") === "中" ? "奥世华机械" : "Aoshihua Machinery");
   const companyPhone = companyInfo?.phone || "#";
-  const companyTagline = t("nav.langZh") === "中" ? "精工智造 · 品质为先" : "Precision Manufacturing · Quality First";
+  const companyTagline = companyInfo?.slogan || (t("nav.langZh") === "中" ? "精工智造 · 品质为先" : "Precision Manufacturing · Quality First");
 
   return (
     <header

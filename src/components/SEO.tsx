@@ -87,7 +87,7 @@ export default function SEO({
       linkCanonical.remove();
     }
 
-    let scriptLd = document.getElementById("json-ld");
+    let scriptLd = document.getElementById("json-ld") as HTMLScriptElement | null;
     if (jsonLd) {
       if (!scriptLd) {
         scriptLd = document.createElement("script");

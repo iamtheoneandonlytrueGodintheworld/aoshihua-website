@@ -12,7 +12,18 @@ import { contentApi, type HomeConfig } from "@/services/contentApi";
 import { useContent } from "@/hooks/useContent";
 import SEO from "@/components/SEO";
 import { useTranslation } from "@/i18n/useTranslation";
-import { ArrowRight, Award, ShieldCheck, HeadphonesIcon, Leaf } from "lucide-react";
+import { ArrowRight, Award, ShieldCheck, HeadphonesIcon, Leaf, type LucideIcon } from "lucide-react";
+
+const iconMap: Record<string, LucideIcon> = {
+  Award,
+  ShieldCheck,
+  HeadphonesIcon,
+  Leaf,
+};
+
+function getIcon(name: string): LucideIcon {
+  return iconMap[name] || Award;
+}
 
 export default function Home() {
   const { data: productsData, isLoading: productsLoading } = useProducts();
@@ -26,28 +37,11 @@ export default function Home() {
   const featuredProducts = productsData ? getProductsByCategory(productsData.products, "all").slice(0, 4) : [];
   const latestArticles = articlesData ? getArticlesByCategory(articlesData.articles, t("news.all")).slice(0, 3) : [];
 
-  const advantages = [
-    {
-      icon: Award,
-      title: t("home.advantageQualityTitle"),
-      desc: t("home.advantageQualityDesc"),
-    },
-    {
-      icon: ShieldCheck,
-      title: t("home.advantageTechTitle"),
-      desc: t("home.advantageTechDesc"),
-    },
-    {
-      icon: HeadphonesIcon,
-      title: t("home.advantageServiceTitle"),
-      desc: t("home.advantageServiceDesc"),
-    },
-    {
-      icon: Leaf,
-      title: t("home.advantageGreenTitle"),
-      desc: t("home.advantageGreenDesc"),
-    },
-  ];
+  const advantages = homeConfig?.advantages.map((item) => ({
+    icon: getIcon(item.icon),
+    title: item.title,
+    desc: item.desc,
+  })) || [];
 
   const aboutLabels = {
     section: t("home.aboutTitle"),
@@ -153,10 +147,14 @@ export default function Home() {
                   alt={t("home.introImageAlt")}
                   className="rounded-2xl shadow-2xl"
                 />
-                <div className="absolute -bottom-6 -right-6 bg-brand-500 text-white p-6 rounded-xl shadow-xl hidden md:block">
-                  <p className="text-4xl font-bold">16+</p>
-                  <p className="text-sm opacity-90">{aboutLabels.experience}</p>
-                </div>
+                {homeConfig && homeConfig.stats.length > 0 && (
+                  <div className="absolute -bottom-6 -right-6 bg-brand-500 text-white p-6 rounded-xl shadow-xl hidden md:block">
+                    <p className="text-4xl font-bold">
+                      {homeConfig.stats[0].value}{homeConfig.stats[0].suffix}
+                    </p>
+                    <p className="text-sm opacity-90">{homeConfig.stats[0].label}</p>
+                  </div>
+                )}
               </div>
             </ScrollReveal>
             <div>

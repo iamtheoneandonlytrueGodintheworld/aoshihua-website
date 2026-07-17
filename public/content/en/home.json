@@ -5,5 +5,17 @@
   "ctaPrimary": "Browse Products",
   "ctaSecondary": "Contact Us",
   "introImage": "/images/统一红框内文字字体.png",
-  "aboutText": "Aoshihua Machinery Manufacturing Co., Ltd. was founded in 2008, specializing in the R&D, production and sales of feed machinery. Our products are exported to over 60 countries and regions. With more than 50 patents, the company is recognized as a provincial high-tech enterprise."
+  "aboutText": "Aoshihua Machinery Manufacturing Co., Ltd. was founded in 2008, specializing in the R&D, production and sales of feed machinery. Our products are exported to over 60 countries and regions. With more than 50 patents, the company is recognized as a provincial high-tech enterprise.",
+  "stats": [
+    { "value": 16, "suffix": "+", "label": "Years of Experience" },
+    { "value": 3000, "suffix": "+", "label": "Equipment Delivered" },
+    { "value": 60, "suffix": "+", "label": "Countries & Regions" },
+    { "value": 98, "suffix": "%", "label": "Customer Satisfaction" }
+  ],
+  "advantages": [
+    { "icon": "Award", "title": "Quality Assurance", "desc": "ISO 9001 certified quality management system with strict full-process control" },
+    { "icon": "ShieldCheck", "title": "Technology Leadership", "desc": "50+ patents, continuous innovation to meet market demands" },
+    { "icon": "HeadphonesIcon", "title": "Thoughtful Service", "desc": "7×24 response, professional technical team support throughout" },
+    { "icon": "Leaf", "title": "Green & Eco-Friendly", "desc": "Low energy design with dust removal solutions for environmental compliance" }
+  ]
 }

@@ -14,9 +14,9 @@ export default function Footer() {
   const companyPhone = companyInfo?.phone || "400-888-6688";
   const companyEmail = companyInfo?.email || "sales@aoshihua-mfg.com";
   const companyAddress = companyInfo?.address || (t("nav.langZh") === "中" ? "江苏省常州市武进区高新技术产业开发区奥世华路 88 号" : "No. 88 Aoshihua Road, Wujin High-Tech Industrial Development Zone, Changzhou, Jiangsu, China");
-  const companyDesc = t("nav.langZh") === "中"
+  const companyDesc = companyInfo?.footerDescription || (t("nav.langZh") === "中"
     ? "专注饲料机械研发、生产与销售，为客户提供从方案设计到安装调试的一站式服务。"
-    : "Specializing in R&D, production and sales of feed machinery, providing one-stop services from solution design to installation and commissioning.";
+    : "Specializing in R&D, production and sales of feed machinery, providing one-stop services from solution design to installation and commissioning.");
 
   const navPathMap: Record<(typeof footerLinkKeys)[number], string> = {
     home: "/",

@@ -21,6 +21,7 @@ collections:
           - { label: 公司名称, name: name, widget: string }
           - { label: 口号, name: slogan, widget: string }
           - { label: 公司简介, name: description, widget: text }
+          - { label: 页脚简介, name: footerDescription, widget: text }
           - { label: 联系电话, name: phone, widget: string }
           - { label: 电子邮箱, name: email, widget: string }
           - { label: 公司地址, name: address, widget: string }
@@ -58,6 +59,7 @@ collections:
           - { label: Company Name, name: name, widget: string }
           - { label: Slogan, name: slogan, widget: string }
           - { label: Company Introduction, name: description, widget: text }
+          - { label: Footer Description, name: footerDescription, widget: text }
           - { label: Phone, name: phone, widget: string }
           - { label: Email, name: email, widget: string }
           - { label: Address, name: address, widget: string }
@@ -103,6 +105,23 @@ collections:
           - { label: 次按钮文字, name: ctaSecondary, widget: string }
           - { label: 简介图片, name: introImage, widget: image }
           - { label: 简介文字, name: aboutText, widget: text }
+          - label: 首页统计
+            name: stats
+            widget: list
+            fields:
+              - { label: 数值, name: value, widget: number }
+              - { label: 后缀, name: suffix, widget: string }
+              - { label: 标签, name: label, widget: string }
+          - label: 核心优势
+            name: advantages
+            widget: list
+            fields:
+              - label: 图标
+                name: icon
+                widget: select
+                options: [Award, ShieldCheck, HeadphonesIcon, Leaf]
+              - { label: 标题, name: title, widget: string }
+              - { label: 描述, name: desc, widget: text }
       - label: Home Config (English)
         name: home-en
         file: public/content/en/home.json
@@ -114,6 +133,23 @@ collections:
           - { label: Secondary CTA, name: ctaSecondary, widget: string }
           - { label: Intro Image, name: introImage, widget: image }
           - { label: Intro Text, name: aboutText, widget: text }
+          - label: Home Stats
+            name: stats
+            widget: list
+            fields:
+              - { label: Value, name: value, widget: number }
+              - { label: Suffix, name: suffix, widget: string }
+              - { label: Label, name: label, widget: string }
+          - label: Core Advantages
+            name: advantages
+            widget: list
+            fields:
+              - label: Icon
+                name: icon
+                widget: select
+                options: [Award, ShieldCheck, HeadphonesIcon, Leaf]
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: desc, widget: text }
 
   - name: products
     label: 产品管理 / Products

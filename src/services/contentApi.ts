@@ -2,6 +2,18 @@ import type { CompanyInfo } from "@/data/company";
 import type { Product, ProductCategory } from "@/data/products";
 import type { Article } from "@/data/articles";
 
+export interface HomeStat {
+  value: number;
+  suffix: string;
+  label: string;
+}
+
+export interface HomeAdvantage {
+  icon: string;
+  title: string;
+  desc: string;
+}
+
 export interface HomeConfig {
   heroTitle: string;
   heroSubtitle: string;
@@ -10,6 +22,8 @@ export interface HomeConfig {
   ctaSecondary: string;
   introImage: string;
   aboutText: string;
+  stats: HomeStat[];
+  advantages: HomeAdvantage[];
 }
 
 export interface ProductsData {

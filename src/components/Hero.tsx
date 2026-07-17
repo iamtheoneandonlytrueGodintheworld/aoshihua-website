@@ -9,13 +9,6 @@ export default function Hero() {
   const { data: home, isLoading } = useContent<HomeConfig>(contentApi.getHome);
   const { t } = useTranslation();
 
-  const stats = [
-    { value: "16+", label: t("home.years") },
-    { value: "3000+", label: t("home.equipment") },
-    { value: "60+", label: t("home.countries") },
-    { value: "98%", label: t("home.satisfaction") },
-  ];
-
   if (isLoading || !home) {
     return (
       <section className="relative min-h-screen flex items-center justify-center bg-navy-900">
@@ -23,6 +16,11 @@ export default function Hero() {
       </section>
     );
   }
+
+  const stats = home.stats.map((stat) => ({
+    value: `${stat.value}${stat.suffix}`,
+    label: stat.label,
+  }));
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">

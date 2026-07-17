@@ -5,6 +5,7 @@ export interface CompanyInfo {
   name: string;
   slogan: string;
   description: string;
+  footerDescription: string;
   phone: string;
   email: string;
   address: string;
