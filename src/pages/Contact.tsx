@@ -4,6 +4,7 @@ import { useCompany } from "@/data/company";
 import SectionTitle from "@/components/SectionTitle";
 import ScrollReveal from "@/components/ScrollReveal";
 import Loading from "@/components/Loading";
+import SEO from "@/components/SEO";
 
 export default function Contact() {
   const { data: companyInfo, isLoading } = useCompany();
@@ -43,6 +44,31 @@ export default function Contact() {
 
   return (
     <div className="pt-20">
+      <SEO
+        title="联系我们"
+        description="联系奥世华机械制造有限公司，获取饲料机械选型方案与报价。通过电话、邮件或在线表单与我们取得联系，期待与您合作。"
+        keywords="联系奥世华,饲料机械咨询,设备报价,奥世华机械"
+        ogUrl="https://aoshihua-website-v4.vercel.app/contact"
+        canonical="https://aoshihua-website-v4.vercel.app/contact"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          name: "联系我们",
+          url: "https://aoshihua-website-v4.vercel.app/contact",
+          mainEntity: {
+            "@type": "Organization",
+            name: companyInfo?.name || "奥世华机械制造有限公司",
+            telephone: companyInfo?.phone || "400-888-6688",
+            email: companyInfo?.email || "sales@aoshihua-mfg.com",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: companyInfo?.address || "江苏省常州市武进区高新技术产业开发区奥世华路 88 号",
+              addressCountry: "CN",
+            },
+            url: "https://aoshihua-website-v4.vercel.app/",
+          },
+        }}
+      />
       {/* Page Header */}
       <section className="bg-navy-900 py-16 md:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">

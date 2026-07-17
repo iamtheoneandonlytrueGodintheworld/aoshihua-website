@@ -4,6 +4,7 @@ import { useProducts, getProductBySlug } from "@/data/products";
 import { useCompany } from "@/data/company";
 import ScrollReveal from "@/components/ScrollReveal";
 import Loading from "@/components/Loading";
+import SEO from "@/components/SEO";
 
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -48,6 +49,34 @@ export default function ProductDetail() {
 
   return (
     <div className="pt-20">
+      <SEO
+        title={product.name}
+        description={product.summary}
+        keywords={`${product.name},${product.categoryName},饲料机械,奥世华机械`}
+        ogUrl={`https://aoshihua-website-v4.vercel.app/products/${product.slug}`}
+        canonical={`https://aoshihua-website-v4.vercel.app/products/${product.slug}`}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: product.name,
+          description: product.summary,
+          image: product.image,
+          brand: {
+            "@type": "Brand",
+            name: "奥世华机械",
+          },
+          category: product.categoryName,
+          offers: {
+            "@type": "Offer",
+            url: `https://aoshihua-website-v4.vercel.app/products/${product.slug}`,
+            availability: "https://schema.org/InStock",
+            seller: {
+              "@type": "Organization",
+              name: companyInfo?.name || "奥世华机械制造有限公司",
+            },
+          },
+        }}
+      />
       {/* Breadcrumb & Header */}
       <section className="bg-navy-900 py-12 md:py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">

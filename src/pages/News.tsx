@@ -3,6 +3,7 @@ import ArticleCard from "@/components/ArticleCard";
 import SectionTitle from "@/components/SectionTitle";
 import ScrollReveal from "@/components/ScrollReveal";
 import Loading from "@/components/Loading";
+import SEO from "@/components/SEO";
 import { useArticles, getArticlesByCategory } from "@/data/articles";
 
 export default function News() {
@@ -23,6 +24,20 @@ export default function News() {
 
   return (
     <div className="pt-20">
+      <SEO
+        title="新闻资讯"
+        description="奥世华机械新闻资讯，分享饲料机械行业趋势、技术干货与企业动态，为您的生产决策提供参考。"
+        keywords="饲料机械新闻,行业动态,技术文章,奥世华机械,饲料加工"
+        ogUrl="https://aoshihua-website-v4.vercel.app/news"
+        canonical="https://aoshihua-website-v4.vercel.app/news"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "新闻资讯",
+          url: "https://aoshihua-website-v4.vercel.app/news",
+          description: "奥世华机械新闻资讯，分享饲料机械行业趋势、技术干货与企业动态。",
+        }}
+      />
       {/* Page Header */}
       <section className="bg-navy-900 py-16 md:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">

@@ -2,6 +2,7 @@ import { useCompany } from "@/data/company";
 import SectionTitle from "@/components/SectionTitle";
 import ScrollReveal from "@/components/ScrollReveal";
 import Loading from "@/components/Loading";
+import SEO from "@/components/SEO";
 import { Award, CheckCircle2 } from "lucide-react";
 
 export default function About() {
@@ -30,6 +31,26 @@ export default function About() {
 
   return (
     <div className="pt-20">
+      <SEO
+        title="关于我们"
+        description="了解奥世华机械制造有限公司的企业文化、发展历程与资质荣誉，十六年深耕饲料机械行业，以技术创新驱动发展，以品质服务赢得客户信赖。"
+        keywords="奥世华机械,关于奥世华,饲料机械厂家,企业文化,发展历程"
+        ogUrl="https://aoshihua-website-v4.vercel.app/about"
+        canonical="https://aoshihua-website-v4.vercel.app/about"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          name: "关于奥世华",
+          url: "https://aoshihua-website-v4.vercel.app/about",
+          mainEntity: {
+            "@type": "Organization",
+            name: companyInfo?.name || "奥世华机械制造有限公司",
+            description: companyInfo?.description,
+            url: "https://aoshihua-website-v4.vercel.app/",
+            logo: "https://aoshihua-website-v4.vercel.app/favicon.svg",
+          },
+        }}
+      />
       {/* Page Header */}
       <section className="bg-navy-900 py-16 md:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">

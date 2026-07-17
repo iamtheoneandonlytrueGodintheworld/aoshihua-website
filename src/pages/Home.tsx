@@ -10,6 +10,7 @@ import { useArticles, getArticlesByCategory } from "@/data/articles";
 import { useCompany } from "@/data/company";
 import { contentApi, type HomeConfig } from "@/services/contentApi";
 import { useContent } from "@/hooks/useContent";
+import SEO from "@/components/SEO";
 import { ArrowRight, Award, ShieldCheck, HeadphonesIcon, Leaf } from "lucide-react";
 
 const advantages = [
@@ -65,6 +66,37 @@ export default function Home() {
 
   return (
     <div>
+      <SEO
+        title="精工智造饲料机械，助力现代农牧发展"
+        description="奥世华机械制造有限公司专注饲料机械研发、生产与销售，主营预混料机组、饲料混合设备、饲料除尘设备、锤片粉碎机等，为客户提供从方案设计到安装调试的一站式服务。"
+        keywords="饲料机械,预混料机组,饲料混合设备,饲料除尘设备,锤片粉碎机,奥世华机械"
+        ogUrl="https://aoshihua-website-v4.vercel.app/"
+        canonical="https://aoshihua-website-v4.vercel.app/"
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: companyInfo?.name || "奥世华机械制造有限公司",
+            url: "https://aoshihua-website-v4.vercel.app/",
+            logo: "https://aoshihua-website-v4.vercel.app/favicon.svg",
+            description:
+              "奥世华机械制造有限公司专注饲料机械研发、生产与销售，主营预混料机组、饲料混合设备、饲料除尘设备、锤片粉碎机等。",
+            contactPoint: {
+              "@type": "ContactPoint",
+              telephone: companyInfo?.phone || "400-888-6688",
+              contactType: "sales",
+              areaServed: "CN",
+              availableLanguage: ["Chinese"],
+            },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "奥世华机械制造有限公司",
+            url: "https://aoshihua-website-v4.vercel.app/",
+          },
+        ]}
+      />
       <Hero />
 
       {/* Products Section */}

@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /admin
 
-Sitemap: https://huaweimfg.com/sitemap.xml
+Sitemap: https://aoshihua-website-v4.vercel.app/sitemap.xml

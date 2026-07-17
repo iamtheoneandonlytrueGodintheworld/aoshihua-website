@@ -4,6 +4,7 @@ import ProductCard from "@/components/ProductCard";
 import SectionTitle from "@/components/SectionTitle";
 import ScrollReveal from "@/components/ScrollReveal";
 import Loading from "@/components/Loading";
+import SEO from "@/components/SEO";
 import { useProducts, getProductsByCategory } from "@/data/products";
 
 export default function Products() {
@@ -50,6 +51,21 @@ export default function Products() {
 
   return (
     <div className="pt-20">
+      <SEO
+        title="产品中心"
+        description="奥世华机械产品中心，提供预混料机组、饲料混合设备、饲料除尘设备、锤片粉碎机等全系列饲料机械，满足饲料加工全流程需求。"
+        keywords="饲料机械产品,预混料机组,饲料混合设备,饲料除尘设备,锤片粉碎机,奥世华机械"
+        ogUrl="https://aoshihua-website-v4.vercel.app/products"
+        canonical="https://aoshihua-website-v4.vercel.app/products"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "产品中心",
+          url: "https://aoshihua-website-v4.vercel.app/products",
+          description:
+            "奥世华机械产品中心，提供预混料机组、饲料混合设备、饲料除尘设备、锤片粉碎机等全系列饲料机械。",
+        }}
+      />
       {/* Page Header */}
       <section className="bg-navy-900 py-16 md:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">

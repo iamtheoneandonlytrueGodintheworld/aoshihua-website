@@ -3,6 +3,7 @@ import { ArrowLeft, Calendar, Tag } from "lucide-react";
 import { useArticles, getArticleBySlug } from "@/data/articles";
 import ScrollReveal from "@/components/ScrollReveal";
 import Loading from "@/components/Loading";
+import SEO from "@/components/SEO";
 
 export default function ArticleDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -34,6 +35,37 @@ export default function ArticleDetail() {
 
   return (
     <div className="pt-20">
+      <SEO
+        title={article.title}
+        description={article.summary}
+        keywords={article.tags.join(",")}
+        ogUrl={`https://aoshihua-website-v4.vercel.app/news/${article.slug}`}
+        canonical={`https://aoshihua-website-v4.vercel.app/news/${article.slug}`}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: article.title,
+          description: article.summary,
+          image: article.cover,
+          datePublished: article.publishedAt,
+          author: {
+            "@type": "Organization",
+            name: "奥世华机械制造有限公司",
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "奥世华机械制造有限公司",
+            logo: {
+              "@type": "ImageObject",
+              url: "https://aoshihua-website-v4.vercel.app/favicon.svg",
+            },
+          },
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `https://aoshihua-website-v4.vercel.app/news/${article.slug}`,
+          },
+        }}
+      />
       {/* Header */}
       <section className="bg-navy-900 py-12 md:py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
