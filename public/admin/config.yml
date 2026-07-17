@@ -2,7 +2,7 @@ backend:
   name: github
   repo: iamtheoneandonlytrueGodintheworld/aoshihua-website
   branch: main
-  base_url: https://aoshihua-website.vercel.app
+  base_url: https://aoshihua-website-v4.vercel.app
   auth_endpoint: api/auth
 
 media_folder: public/images

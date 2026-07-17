@@ -8,7 +8,6 @@
     { "source": "/admin/:path*", "destination": "/admin/index.html" },
     { "source": "/content/:path*", "destination": "/content/:path*" },
     { "source": "/images/:path*", "destination": "/images/:path*" },
-    { "source": "/api/:path*", "destination": "/api/:path*" },
     { "source": "/:path*", "destination": "/index.html" }
   ]
 }
