@@ -70,7 +70,10 @@ export default async function handler(req: any, res: any) {
         return;
       }
 
-      const payload = JSON.stringify({ token: token.access_token });
+      const payload = JSON.stringify({
+        access_token: token.access_token,
+        provider: "github",
+      });
 
       res.setHeader("Content-Type", "text/html; charset=utf-8");
       res.status(200).send(`<!doctype html>
