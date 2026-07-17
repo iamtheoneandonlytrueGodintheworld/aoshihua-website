@@ -85,7 +85,7 @@ export default async function handler(req: any, res: any) {
             return;
           }
           window.opener.postMessage(
-            "authorization:github:success:${payload}",
+            "authorization:github:success:" + ${JSON.stringify(payload)},
             "*"
           );
           setTimeout(function() { window.close(); }, 500);
