@@ -11,41 +11,56 @@ import { useCompany } from "@/data/company";
 import { contentApi, type HomeConfig } from "@/services/contentApi";
 import { useContent } from "@/hooks/useContent";
 import SEO from "@/components/SEO";
+import { useTranslation } from "@/i18n/useTranslation";
 import { ArrowRight, Award, ShieldCheck, HeadphonesIcon, Leaf } from "lucide-react";
-
-const advantages = [
-  {
-    icon: Award,
-    title: "品质保证",
-    desc: "ISO 9001 质量管理体系认证，全流程严格把控",
-  },
-  {
-    icon: ShieldCheck,
-    title: "技术领先",
-    desc: "50+ 项专利技术，持续创新满足市场需求",
-  },
-  {
-    icon: HeadphonesIcon,
-    title: "服务贴心",
-    desc: "7×24 小时响应，专业技术团队全程支持",
-  },
-  {
-    icon: Leaf,
-    title: "绿色环保",
-    desc: "低能耗设计，配套除尘方案，助力环保达标",
-  },
-];
 
 export default function Home() {
   const { data: productsData, isLoading: productsLoading } = useProducts();
   const { data: articlesData, isLoading: articlesLoading } = useArticles();
   const { data: companyInfo, isLoading: companyLoading } = useCompany();
   const { data: homeConfig, isLoading: homeLoading } = useContent<HomeConfig>(contentApi.getHome);
+  const { t, locale } = useTranslation();
 
   const isLoading = productsLoading || articlesLoading || companyLoading || homeLoading;
 
   const featuredProducts = productsData ? getProductsByCategory(productsData.products, "all").slice(0, 4) : [];
-  const latestArticles = articlesData ? getArticlesByCategory(articlesData.articles, "全部").slice(0, 3) : [];
+  const latestArticles = articlesData ? getArticlesByCategory(articlesData.articles, t("news.all")).slice(0, 3) : [];
+
+  const advantages = [
+    {
+      icon: Award,
+      title: t("home.advantageQualityTitle"),
+      desc: t("home.advantageQualityDesc"),
+    },
+    {
+      icon: ShieldCheck,
+      title: t("home.advantageTechTitle"),
+      desc: t("home.advantageTechDesc"),
+    },
+    {
+      icon: HeadphonesIcon,
+      title: t("home.advantageServiceTitle"),
+      desc: t("home.advantageServiceDesc"),
+    },
+    {
+      icon: Leaf,
+      title: t("home.advantageGreenTitle"),
+      desc: t("home.advantageGreenDesc"),
+    },
+  ];
+
+  const aboutLabels = {
+    section: t("home.aboutTitle"),
+    title: t("home.aboutMainTitle"),
+    experience: t("home.aboutExperience"),
+  };
+
+  const ctaLabels = {
+    title: t("home.ctaTitle"),
+    subtitle: t("home.ctaSubtitle"),
+    contact: t("home.ctaContact"),
+    call: t("home.ctaCall"),
+  };
 
   if (isLoading) {
     return (
@@ -59,7 +74,7 @@ export default function Home() {
   if (!productsData || !articlesData || !companyInfo || !homeConfig) {
     return (
       <div className="pt-32 text-center">
-        <p className="text-navy-600">内容加载失败，请稍后重试</p>
+        <p className="text-navy-600">{t("common.error")}</p>
       </div>
     );
   }
@@ -67,20 +82,22 @@ export default function Home() {
   return (
     <div>
       <SEO
-        title="精工智造饲料机械，助力现代农牧发展"
-        description="奥世华机械制造有限公司专注饲料机械研发、生产与销售，主营预混料机组、饲料混合设备、饲料除尘设备、锤片粉碎机等，为客户提供从方案设计到安装调试的一站式服务。"
-        keywords="饲料机械,预混料机组,饲料混合设备,饲料除尘设备,锤片粉碎机,奥世华机械"
+        title={t("home.heroTitle")}
+        description={t("home.heroDescription")}
+        keywords={t("home.heroKeywords")}
         ogUrl="https://aoshihua-website-v4.vercel.app/"
         canonical="https://aoshihua-website-v4.vercel.app/"
         jsonLd={[
           {
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: companyInfo?.name || "奥世华机械制造有限公司",
+            name: companyInfo?.name || (locale === "zh" ? "奥世华机械制造有限公司" : "Aoshihua Machinery Manufacturing Co., Ltd."),
             url: "https://aoshihua-website-v4.vercel.app/",
             logo: "https://aoshihua-website-v4.vercel.app/favicon.svg",
             description:
-              "奥世华机械制造有限公司专注饲料机械研发、生产与销售，主营预混料机组、饲料混合设备、饲料除尘设备、锤片粉碎机等。",
+              locale === "zh"
+                ? "奥世华机械制造有限公司专注饲料机械研发、生产与销售，主营预混料机组、饲料混合设备、饲料除尘设备、锤片粉碎机等。"
+                : "Aoshihua Machinery Manufacturing Co., Ltd. specializes in R&D, production and sales of feed machinery.",
             contactPoint: {
               "@type": "ContactPoint",
               telephone: companyInfo?.phone || "400-888-6688",
@@ -92,7 +109,7 @@ export default function Home() {
           {
             "@context": "https://schema.org",
             "@type": "WebSite",
-            name: "奥世华机械制造有限公司",
+            name: locale === "zh" ? "奥世华机械制造有限公司" : "Aoshihua Machinery Manufacturing Co., Ltd.",
             url: "https://aoshihua-website-v4.vercel.app/",
           },
         ]}
@@ -103,8 +120,8 @@ export default function Home() {
       <section id="products" className="py-20 md:py-28 bg-navy-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
-            title="核心产品"
-            subtitle="覆盖饲料加工全流程，满足预混料、混合、除尘、粉碎等多场景需求"
+            title={t("home.coreProducts")}
+            subtitle={t("home.coreProductsSubtitle")}
           />
           <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredProducts.map((product, index) => (
@@ -118,7 +135,7 @@ export default function Home() {
               to="/products"
               className="inline-flex items-center gap-2 px-8 py-3.5 bg-navy-900 hover:bg-navy-800 text-white font-semibold rounded-md transition-all"
             >
-              查看全部产品
+              {t("home.viewAllProducts")}
               <ArrowRight size={18} />
             </Link>
           </ScrollReveal>
@@ -133,22 +150,22 @@ export default function Home() {
               <div className="relative">
                 <img
                   src={homeConfig.introImage}
-                  alt="奥世华机械工厂"
+                  alt={t("home.introImageAlt")}
                   className="rounded-2xl shadow-2xl"
                 />
                 <div className="absolute -bottom-6 -right-6 bg-brand-500 text-white p-6 rounded-xl shadow-xl hidden md:block">
                   <p className="text-4xl font-bold">16+</p>
-                  <p className="text-sm opacity-90">年行业深耕</p>
+                  <p className="text-sm opacity-90">{aboutLabels.experience}</p>
                 </div>
               </div>
             </ScrollReveal>
             <div>
               <ScrollReveal>
                 <span className="text-brand-600 font-semibold text-sm uppercase tracking-wider">
-                  关于奥世华
+                  {aboutLabels.section}
                 </span>
                 <h2 className="mt-3 text-3xl md:text-4xl font-bold text-navy-900 font-display">
-                  专注饲料机械，守护每一口饲料的品质
+                  {aboutLabels.title}
                 </h2>
               </ScrollReveal>
               <ScrollReveal delay={100}>
@@ -171,7 +188,7 @@ export default function Home() {
                   to="/about"
                   className="mt-8 inline-flex items-center gap-2 text-brand-600 font-semibold hover:text-brand-700 transition-colors"
                 >
-                  了解更多
+                  {t("home.learnMore")}
                   <ArrowRight size={18} />
                 </Link>
               </ScrollReveal>
@@ -188,8 +205,8 @@ export default function Home() {
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <SectionTitle
-            title="为什么选择奥世华"
-            subtitle="以匠心铸就品质，以服务赢得信赖"
+            title={t("home.whyChoose")}
+            subtitle={t("home.whyChooseSubtitle")}
             light
           />
           <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -212,8 +229,8 @@ export default function Home() {
       <section className="py-20 md:py-28 bg-navy-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
-            title="新闻资讯"
-            subtitle="行业动态、技术分享与企业新闻"
+            title={t("home.latestNews")}
+            subtitle={t("home.latestNewsSubtitle")}
           />
           <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {latestArticles.map((article, index) => (
@@ -227,7 +244,7 @@ export default function Home() {
               to="/news"
               className="inline-flex items-center gap-2 px-8 py-3.5 bg-white hover:bg-navy-50 text-navy-900 border border-navy-200 font-semibold rounded-md transition-all"
             >
-              查看更多文章
+              {t("home.viewAllNews")}
               <ArrowRight size={18} />
             </Link>
           </ScrollReveal>
@@ -239,24 +256,24 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-bold text-white font-display">
-              立即获取专属饲料机械解决方案
+              {ctaLabels.title}
             </h2>
             <p className="mt-4 text-brand-100 max-w-2xl mx-auto">
-              无论您是新建饲料厂还是产线升级，我们的技术团队都将为您提供专业咨询与定制方案。
+              {ctaLabels.subtitle}
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 to="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-white text-brand-600 font-semibold rounded-md hover:bg-brand-50 transition-all"
               >
-                免费获取方案
+                {ctaLabels.contact}
                 <ArrowRight size={18} />
               </Link>
               <a
                 href={`tel:${companyInfo.phone}`}
                 className="inline-flex items-center gap-2 px-8 py-4 bg-brand-700 hover:bg-brand-800 text-white font-semibold rounded-md transition-all"
               >
-                拨打服务热线
+                {ctaLabels.call}
               </a>
             </div>
           </ScrollReveal>

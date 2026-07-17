@@ -2,20 +2,23 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Factory } from "lucide-react";
 import { useCompany } from "@/data/company";
-
-const navItems = [
-  { label: "首页", path: "/" },
-  { label: "关于我们", path: "/about" },
-  { label: "产品中心", path: "/products" },
-  { label: "新闻资讯", path: "/news" },
-  { label: "联系我们", path: "/contact" },
-];
+import { useTranslation } from "@/i18n/useTranslation";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { data: companyInfo, isLoading } = useCompany();
+  const { t } = useTranslation();
+
+  const navItems = [
+    { label: t("nav.home"), path: "/" },
+    { label: t("nav.about"), path: "/about" },
+    { label: t("nav.products"), path: "/products" },
+    { label: t("nav.news"), path: "/news" },
+    { label: t("nav.contact"), path: "/contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -27,8 +30,9 @@ export default function Navbar() {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
-  const companyName = companyInfo?.name || "奥世华机械";
+  const companyName = companyInfo?.name || (t("nav.langZh") === "中" ? "奥世华机械" : "Aoshihua Machinery");
   const companyPhone = companyInfo?.phone || "#";
+  const companyTagline = t("nav.langZh") === "中" ? "精工智造 · 品质为先" : "Precision Manufacturing · Quality First";
 
   return (
     <header
@@ -46,7 +50,7 @@ export default function Navbar() {
               <span className="text-white font-bold text-lg leading-tight font-display">
                 {companyName}
               </span>
-              <span className="text-navy-300 text-xs hidden sm:block">精工智造 · 品质为先</span>
+              <span className="text-navy-300 text-xs hidden sm:block">{companyTagline}</span>
             </div>
           </Link>
 
@@ -71,22 +75,26 @@ export default function Navbar() {
             })}
           </ul>
 
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-3">
+            <LanguageSwitcher />
             <a
               href={`tel:${companyPhone}`}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold rounded-md transition-all shadow-lg shadow-brand-500/20 hover:shadow-brand-500/40 hover:-translate-y-0.5"
             >
-              立即咨询
+              {t("nav.consult")}
             </a>
           </div>
 
-          <button
-            className="md:hidden p-2 text-white"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="切换菜单"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <LanguageSwitcher />
+            <button
+              className="p-2 text-white"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="切换菜单"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -116,7 +124,7 @@ export default function Navbar() {
               href={`tel:${companyPhone}`}
               className="block w-full text-center px-4 py-3 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-md"
             >
-              立即咨询
+              {t("nav.consult")}
             </a>
           </li>
         </ul>

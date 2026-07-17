@@ -2,17 +2,19 @@ import { Link } from "react-router-dom";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { contentApi, type HomeConfig } from "@/services/contentApi";
 import { useContent } from "@/hooks/useContent";
+import { useTranslation } from "@/i18n/useTranslation";
 import Loading from "./Loading";
-
-const stats = [
-  { value: "16+", label: "年行业经验" },
-  { value: "3000+", label: "台设备出货" },
-  { value: "60+", label: "服务国家" },
-  { value: "50+", label: "项技术专利" },
-];
 
 export default function Hero() {
   const { data: home, isLoading } = useContent<HomeConfig>(contentApi.getHome);
+  const { t } = useTranslation();
+
+  const stats = [
+    { value: "16+", label: t("home.years") },
+    { value: "3000+", label: t("home.equipment") },
+    { value: "60+", label: t("home.countries") },
+    { value: "98%", label: t("home.satisfaction") },
+  ];
 
   if (isLoading || !home) {
     return (
@@ -28,7 +30,7 @@ export default function Hero() {
       <div className="absolute inset-0">
         <img
           src={home.heroBackground}
-          alt="饲料机械"
+          alt="Feed machinery"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-900/80 to-navy-900/50" />
@@ -39,7 +41,9 @@ export default function Hero() {
         <div className="max-w-3xl animate-fade-up">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur rounded-full border border-white/10 mb-6">
             <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" />
-            <span className="text-sm text-navy-100">始于 2008 年的饲料机械专家</span>
+            <span className="text-sm text-navy-100">
+              {t("home.heroBadge")}
+            </span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight font-display">
@@ -83,7 +87,7 @@ export default function Hero() {
       {/* Scroll Down */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
         <a href="#products" className="flex flex-col items-center text-white/70 hover:text-white transition-colors">
-          <span className="text-xs mb-2">向下滚动</span>
+          <span className="text-xs mb-2">{t("home.scrollDown")}</span>
           <ChevronDown size={24} />
         </a>
       </div>

@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import { Calendar, ArrowRight } from "lucide-react";
 import type { Article } from "@/data/articles";
+import { useTranslation } from "@/i18n/useTranslation";
 
 interface ArticleCardProps {
   article: Article;
 }
 
 export default function ArticleCard({ article }: ArticleCardProps) {
+  const { t } = useTranslation();
+
   return (
     <Link
       to={`/news/${article.slug}`}
@@ -35,7 +38,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
         </h3>
         <p className="mt-2 text-sm text-navy-500 line-clamp-2 flex-1">{article.summary}</p>
         <div className="mt-4 flex items-center text-brand-600 text-sm font-semibold">
-          <span>阅读全文</span>
+          <span>{t("news.readMore")}</span>
           <ArrowRight size={16} className="ml-1 transition-transform group-hover:translate-x-1" />
         </div>
       </div>

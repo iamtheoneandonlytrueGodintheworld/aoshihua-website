@@ -1,18 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, User, Bot, Headphones } from "lucide-react";
 import { useChatStore } from "@/store/chatStore";
-import {
-  useChatKnowledge,
-  findResponse,
-} from "@/data/chatKnowledge";
+import { useChatKnowledge, findResponse } from "@/data/chatKnowledge";
 import { useCompany } from "@/data/company";
-
-const suggestedQuestions = [
-  "你们有哪些产品？",
-  "锤片粉碎机怎么选型？",
-  "设备价格多少？",
-  "售后服务怎么样？",
-];
+import { useTranslation } from "@/i18n/useTranslation";
+import { translations } from "@/i18n/translations";
 
 export default function ChatWidget() {
   const { isOpen, toggle, open, messages, addMessage, hasWelcomed, setWelcomed } =
@@ -22,10 +14,24 @@ export default function ChatWidget() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { data: chatData, isLoading: chatLoading } = useChatKnowledge();
   const { data: companyInfo } = useCompany();
+  const { t, locale } = useTranslation();
 
-  const welcomeMessage = chatData?.welcomeMessage || "您好，欢迎来到奥世华机械！请问有什么可以帮您？";
-  const fallbackMessage = chatData?.fallbackMessage || "抱歉，我暂时无法回答这个问题，您可以留下联系方式转人工。";
-  const humanHandoffMessage = chatData?.humanHandoffMessage || "已为您转接人工服务，请留下联系方式。";
+  const suggestedQuestions = translations[locale].chat.suggestedQuestions;
+  const humanTriggers = translations[locale].chat.humanTriggers;
+
+  const welcomeMessage =
+    chatData?.welcomeMessage ||
+    (locale === "zh" ? "您好，欢迎来到奥世华机械！请问有什么可以帮您？" : "Hello, welcome to Aoshihua Machinery! How can I help you?");
+  const fallbackMessage =
+    chatData?.fallbackMessage ||
+    (locale === "zh"
+      ? "抱歉，我暂时无法回答这个问题，您可以留下联系方式转人工。"
+      : "Sorry, I cannot answer this question at the moment. Please leave your contact info for human support.");
+  const humanHandoffMessage =
+    chatData?.humanHandoffMessage ||
+    (locale === "zh"
+      ? "已为您转接人工服务，请留下联系方式。"
+      : "You have been transferred to human support. Please leave your contact info.");
   const knowledge = chatData?.knowledge || [];
   const companyPhone = companyInfo?.phone || "400-888-6688";
 
@@ -58,7 +64,7 @@ export default function ChatWidget() {
       setIsTyping(false);
 
       const normalized = userMessage.toLowerCase();
-      if (normalized.includes("人工") || normalized.includes("客服") || normalized.includes("销售")) {
+      if (humanTriggers.some((trigger) => normalized.includes(trigger.toLowerCase()))) {
         addMessage({
           role: "ai",
           content: humanHandoffMessage,
@@ -100,17 +106,17 @@ export default function ChatWidget() {
               <Bot size={20} />
             </div>
             <div>
-              <h3 className="text-white font-semibold text-sm">奥世华智能客服</h3>
+              <h3 className="text-white font-semibold text-sm">{t("chat.title")}</h3>
               <p className="text-navy-300 text-xs flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                在线
+                {t("chat.online")}
               </p>
             </div>
           </div>
           <button
             onClick={toggle}
             className="text-navy-300 hover:text-white transition-colors p-1"
-            aria-label="关闭"
+            aria-label={t("chat.close")}
           >
             <X size={20} />
           </button>
@@ -186,27 +192,29 @@ export default function ChatWidget() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="请输入您的问题..."
+              placeholder={t("chat.placeholder")}
               className="flex-1 px-4 py-2.5 bg-navy-50 border border-navy-200 rounded-full text-sm focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
             />
             <button
               onClick={() => handleSend()}
               disabled={!input.trim() || isTyping}
               className="w-10 h-10 rounded-full bg-brand-500 hover:bg-brand-600 disabled:bg-navy-300 text-white flex items-center justify-center transition-colors"
-              aria-label="发送"
+              aria-label={t("chat.send")}
             >
               <Send size={16} />
             </button>
           </div>
           <div className="mt-2 flex items-center justify-between">
             <button
-              onClick={() => handleSend("转人工")}
+              onClick={() => handleSend(t("chat.human"))}
               className="text-xs text-navy-500 hover:text-brand-600 flex items-center gap-1 transition-colors"
             >
               <Headphones size={12} />
-              转人工客服
+              {t("chat.humanService")}
             </button>
-            <span className="text-xs text-navy-400">服务热线：{companyPhone}</span>
+            <span className="text-xs text-navy-400">
+              {t("chat.serviceHotline")}：{companyPhone}
+            </span>
           </div>
         </div>
       </div>
@@ -217,7 +225,7 @@ export default function ChatWidget() {
         className={`w-14 h-14 rounded-full bg-brand-500 hover:bg-brand-600 text-white shadow-lg shadow-brand-500/30 flex items-center justify-center transition-all hover:scale-110 ${
           isOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"
         }`}
-        aria-label="打开客服"
+        aria-label={t("chat.openChat")}
       >
         <MessageCircle size={24} />
       </button>

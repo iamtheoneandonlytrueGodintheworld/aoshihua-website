@@ -6,11 +6,13 @@ import ScrollReveal from "@/components/ScrollReveal";
 import Loading from "@/components/Loading";
 import SEO from "@/components/SEO";
 import { useProducts, getProductsByCategory } from "@/data/products";
+import { useTranslation } from "@/i18n/useTranslation";
 
 export default function Products() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [activeCategory, setActiveCategory] = useState(searchParams.get("category") || "all");
   const { data: productsData, isLoading } = useProducts();
+  const { t, locale } = useTranslation();
 
   useEffect(() => {
     const category = searchParams.get("category") || "all";
@@ -26,12 +28,24 @@ export default function Products() {
     }
   };
 
+  const metaTitle = locale === "zh" ? "产品中心" : "Products";
+  const metaDescription =
+    locale === "zh"
+      ? "奥世华机械产品中心，提供预混料机组、饲料混合设备、饲料除尘设备、锤片粉碎机等全系列饲料机械，满足饲料加工全流程需求。"
+      : "Aoshihua Machinery product center, providing premix units, feed mixing equipment, dust removal equipment, hammer mills and other feed machinery.";
+  const metaKeywords =
+    locale === "zh"
+      ? "饲料机械产品,预混料机组,饲料混合设备,饲料除尘设备,锤片粉碎机,奥世华机械"
+      : "feed machinery products,premix unit,feed mixer,dust collector,hammer mill,Aoshihua Machinery";
+
   if (isLoading) {
     return (
       <div className="pt-20">
         <section className="bg-navy-900 py-16 md:py-24">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-3xl md:text-5xl font-bold text-white font-display">产品中心</h1>
+            <h1 className="text-3xl md:text-5xl font-bold text-white font-display">
+              {t("products.pageTitle")}
+            </h1>
           </div>
         </section>
         <Loading />
@@ -42,7 +56,7 @@ export default function Products() {
   if (!productsData) {
     return (
       <div className="pt-32 text-center">
-        <p className="text-navy-600">内容加载失败</p>
+        <p className="text-navy-600">{t("common.error")}</p>
       </div>
     );
   }
@@ -52,28 +66,27 @@ export default function Products() {
   return (
     <div className="pt-20">
       <SEO
-        title="产品中心"
-        description="奥世华机械产品中心，提供预混料机组、饲料混合设备、饲料除尘设备、锤片粉碎机等全系列饲料机械，满足饲料加工全流程需求。"
-        keywords="饲料机械产品,预混料机组,饲料混合设备,饲料除尘设备,锤片粉碎机,奥世华机械"
+        title={metaTitle}
+        description={metaDescription}
+        keywords={metaKeywords}
         ogUrl="https://aoshihua-website-v4.vercel.app/products"
         canonical="https://aoshihua-website-v4.vercel.app/products"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "CollectionPage",
-          name: "产品中心",
+          name: metaTitle,
           url: "https://aoshihua-website-v4.vercel.app/products",
-          description:
-            "奥世华机械产品中心，提供预混料机组、饲料混合设备、饲料除尘设备、锤片粉碎机等全系列饲料机械。",
+          description: metaDescription,
         }}
       />
       {/* Page Header */}
       <section className="bg-navy-900 py-16 md:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl md:text-5xl font-bold text-white font-display animate-fade-up">
-            产品中心
+            {t("products.pageTitle")}
           </h1>
           <p className="mt-4 text-navy-300 max-w-2xl mx-auto animate-fade-up">
-            预混料机组、饲料混合设备、饲料除尘设备、锤片粉碎机，覆盖饲料加工全流程
+            {t("products.subtitle")}
           </p>
         </div>
       </section>
@@ -82,8 +95,8 @@ export default function Products() {
       <section className="py-16 md:py-24 bg-navy-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
-            title="全系列产品"
-            subtitle="根据您的生产需求，选择最适合的饲料机械设备"
+            title={t("products.pageTitle")}
+            subtitle={t("products.subtitle")}
           />
 
           {/* Category Filter */}
@@ -96,7 +109,7 @@ export default function Products() {
                   : "bg-white text-navy-600 hover:bg-navy-100 border border-navy-200"
               }`}
             >
-              全部产品
+              {t("products.allProducts")}
             </button>
             {productsData.categories.map((cat) => (
               <button
@@ -123,7 +136,7 @@ export default function Products() {
 
           {filteredProducts.length === 0 && (
             <div className="text-center py-16">
-              <p className="text-navy-500">该分类下暂无产品</p>
+              <p className="text-navy-500">{t("products.noProducts")}</p>
             </div>
           )}
         </div>

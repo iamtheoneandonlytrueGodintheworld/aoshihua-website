@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface UseContentState<T> {
   data: T | null;
@@ -7,6 +8,7 @@ interface UseContentState<T> {
 }
 
 export function useContent<T>(fetcher: () => Promise<T>): UseContentState<T> {
+  const { locale } = useLanguage();
   const [state, setState] = useState<UseContentState<T>>({
     data: null,
     isLoading: true,
@@ -20,6 +22,8 @@ export function useContent<T>(fetcher: () => Promise<T>): UseContentState<T> {
 
   useEffect(() => {
     let cancelled = false;
+
+    setState({ data: null, isLoading: true, error: null });
 
     fetcherRef
       .current()
@@ -37,7 +41,7 @@ export function useContent<T>(fetcher: () => Promise<T>): UseContentState<T> {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [locale]);
 
   return state;
 }

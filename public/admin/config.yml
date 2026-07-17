@@ -12,11 +12,11 @@ publish_mode: editorial_workflow
 
 collections:
   - name: company
-    label: 公司信息
+    label: 公司信息 / Company Info
     files:
-      - label: 基本信息
-        name: company
-        file: public/content/company.json
+      - label: 公司信息（中文）
+        name: company-zh
+        file: public/content/zh/company.json
         fields:
           - { label: 公司名称, name: name, widget: string }
           - { label: 口号, name: slogan, widget: string }
@@ -51,13 +51,50 @@ collections:
               - { label: 数值, name: value, widget: number }
               - { label: 后缀, name: suffix, widget: string }
               - { label: 标签, name: label, widget: string }
+      - label: Company Info (English)
+        name: company-en
+        file: public/content/en/company.json
+        fields:
+          - { label: Company Name, name: name, widget: string }
+          - { label: Slogan, name: slogan, widget: string }
+          - { label: Company Introduction, name: description, widget: text }
+          - { label: Phone, name: phone, widget: string }
+          - { label: Email, name: email, widget: string }
+          - { label: Address, name: address, widget: string }
+          - { label: Founded Year, name: foundedYear, widget: number }
+          - label: Corporate Values
+            name: values
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: desc, widget: text }
+          - label: Milestones
+            name: milestones
+            widget: list
+            fields:
+              - { label: Year, name: year, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: desc, widget: text }
+          - label: Honors
+            name: honors
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: desc, widget: string }
+          - label: Key Figures
+            name: stats
+            widget: list
+            fields:
+              - { label: Value, name: value, widget: number }
+              - { label: Suffix, name: suffix, widget: string }
+              - { label: Label, name: label, widget: string }
 
   - name: home
-    label: 首页配置
+    label: 首页配置 / Home Config
     files:
-      - label: 首页
-        name: home
-        file: public/content/home.json
+      - label: 首页配置（中文）
+        name: home-zh
+        file: public/content/zh/home.json
         fields:
           - { label: 主标题, name: heroTitle, widget: string }
           - { label: 副标题, name: heroSubtitle, widget: string }
@@ -66,13 +103,24 @@ collections:
           - { label: 次按钮文字, name: ctaSecondary, widget: string }
           - { label: 简介图片, name: introImage, widget: image }
           - { label: 简介文字, name: aboutText, widget: text }
+      - label: Home Config (English)
+        name: home-en
+        file: public/content/en/home.json
+        fields:
+          - { label: Hero Title, name: heroTitle, widget: string }
+          - { label: Hero Subtitle, name: heroSubtitle, widget: string }
+          - { label: Hero Background, name: heroBackground, widget: image }
+          - { label: Primary CTA, name: ctaPrimary, widget: string }
+          - { label: Secondary CTA, name: ctaSecondary, widget: string }
+          - { label: Intro Image, name: introImage, widget: image }
+          - { label: Intro Text, name: aboutText, widget: text }
 
   - name: products
-    label: 产品管理
+    label: 产品管理 / Products
     files:
-      - label: 产品数据
-        name: products
-        file: public/content/products.json
+      - label: 产品数据（中文）
+        name: products-zh
+        file: public/content/zh/products.json
         fields:
           - label: 产品分类
             name: categories
@@ -103,13 +151,46 @@ collections:
                 widget: list
                 field: { label: 特点, name: feature, widget: string }
               - { label: 应用场景, name: application, widget: text }
+      - label: Products (English)
+        name: products-en
+        file: public/content/en/products.json
+        fields:
+          - label: Categories
+            name: categories
+            widget: list
+            fields:
+              - { label: Category Key, name: key, widget: string }
+              - { label: Category Name, name: name, widget: string }
+          - label: Product List
+            name: products
+            widget: list
+            fields:
+              - { label: Product ID, name: id, widget: string }
+              - { label: URL Slug, name: slug, widget: string }
+              - { label: Product Name, name: name, widget: string }
+              - { label: Category Key, name: category, widget: string }
+              - { label: Category Name, name: categoryName, widget: string }
+              - { label: Summary, name: summary, widget: text }
+              - { label: Description, name: description, widget: markdown }
+              - { label: Image, name: image, widget: image }
+              - label: Parameters
+                name: parameters
+                widget: list
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - { label: Value, name: value, widget: string }
+              - label: Features
+                name: features
+                widget: list
+                field: { label: Feature, name: feature, widget: string }
+              - { label: Applications, name: application, widget: text }
 
   - name: articles
-    label: 文章管理
+    label: 文章管理 / Articles
     files:
-      - label: 文章数据
-        name: articles
-        file: public/content/articles.json
+      - label: 文章数据（中文）
+        name: articles-zh
+        file: public/content/zh/articles.json
         fields:
           - label: 文章分类
             name: categories
@@ -131,13 +212,37 @@ collections:
                 name: tags
                 widget: list
                 field: { label: 标签, name: tag, widget: string }
+      - label: Articles (English)
+        name: articles-en
+        file: public/content/en/articles.json
+        fields:
+          - label: Categories
+            name: categories
+            widget: list
+            field: { label: Category, name: category, widget: string }
+          - label: Article List
+            name: articles
+            widget: list
+            fields:
+              - { label: Article ID, name: id, widget: string }
+              - { label: URL Slug, name: slug, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Summary, name: summary, widget: text }
+              - { label: Content, name: content, widget: markdown }
+              - { label: Cover Image, name: cover, widget: image, required: false }
+              - { label: Category, name: category, widget: string }
+              - { label: Published At, name: publishedAt, widget: datetime, date_format: YYYY-MM-DD, time_format: false }
+              - label: Tags
+                name: tags
+                widget: list
+                field: { label: Tag, name: tag, widget: string }
 
   - name: chat
-    label: 客服知识库
+    label: 客服知识库 / Chat Knowledge
     files:
-      - label: 知识库
-        name: chat-knowledge
-        file: public/content/chat-knowledge.json
+      - label: 知识库（中文）
+        name: chat-knowledge-zh
+        file: public/content/zh/chat-knowledge.json
         fields:
           - { label: 欢迎消息, name: welcomeMessage, widget: string }
           - { label: 未知问题回复, name: fallbackMessage, widget: text }
@@ -151,3 +256,19 @@ collections:
                 widget: list
                 field: { label: 关键词, name: keyword, widget: string }
               - { label: 回复内容, name: response, widget: text }
+      - label: Chat Knowledge (English)
+        name: chat-knowledge-en
+        file: public/content/en/chat-knowledge.json
+        fields:
+          - { label: Welcome Message, name: welcomeMessage, widget: string }
+          - { label: Fallback Message, name: fallbackMessage, widget: text }
+          - { label: Human Handoff Message, name: humanHandoffMessage, widget: text }
+          - label: Q&A Knowledge
+            name: knowledge
+            widget: list
+            fields:
+              - label: Keywords
+                name: keywords
+                widget: list
+                field: { label: Keyword, name: keyword, widget: string }
+              - { label: Response, name: response, widget: text }

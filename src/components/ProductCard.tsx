@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import type { Product } from "@/data/products";
+import { useTranslation } from "@/i18n/useTranslation";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const { t } = useTranslation();
+
   return (
     <Link
       to={`/products/${product.slug}`}
@@ -30,7 +33,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </h3>
         <p className="mt-2 text-sm text-navy-500 line-clamp-2">{product.summary}</p>
         <div className="mt-4 flex items-center text-brand-600 text-sm font-semibold">
-          <span>查看详情</span>
+          <span>{t("products.viewDetail")}</span>
           <ArrowRight size={16} className="ml-1 transition-transform group-hover:translate-x-1" />
         </div>
       </div>

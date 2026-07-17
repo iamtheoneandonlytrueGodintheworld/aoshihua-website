@@ -1,0 +1,202 @@
+{
+  "categories": [
+    { "key": "premix", "name": "Premix Units" },
+    { "key": "mixing", "name": "Feed Mixing Equipment" },
+    { "key": "dust", "name": "Dust Removal Equipment" },
+    { "key": "crusher", "name": "Hammer Mills" }
+  ],
+  "products": [
+    {
+      "id": "p1",
+      "slug": "premix-unit-szj",
+      "name": "SZJ Series Premix Unit",
+      "category": "premix",
+      "categoryName": "Premix Units",
+      "summary": "An efficient production line specially designed for premix and concentrate feed, with accurate batching, uniform mixing and low residue.",
+      "description": "The SZJ series premix unit adopts a modular design, integrating raw material receiving, batching, mixing and packaging. Core components are made of stainless steel, corrosion-resistant and easy to clean; the PLC automatic control system supports formula management, automatic batching, fault alarm and other functions, suitable for livestock and poultry premix, aquatic premix and additive premix production.",
+      "image": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
+      "parameters": [
+        { "label": "Production Capacity", "value": "1-10 t/h" },
+        { "label": "Mixer Volume", "value": "0.5-4 m³" },
+        { "label": "Mixing Uniformity", "value": "CV ≤ 5%" },
+        { "label": "Batching Accuracy", "value": "± 0.2%" },
+        { "label": "Installed Power", "value": "25-90 kW" }
+      ],
+      "features": [
+        "Modular design for quick installation and easy maintenance",
+        "Double-shaft paddle mixer with short mixing time and high uniformity",
+        "Micro batching scale to meet high-precision premix requirements",
+        "Fully enclosed production with less dust and environmental compliance"
+      ],
+      "application": "Widely used in premix production lines for large feed enterprises, self-supplied feed workshops of farms and additive production enterprises."
+    },
+    {
+      "id": "p2",
+      "slug": "premix-unit-slh",
+      "name": "SLH Stainless Steel Premix Unit",
+      "category": "premix",
+      "categoryName": "Premix Units",
+      "summary": "All stainless steel construction meets high hygiene standards, ideal for high-end premix and additive production.",
+      "description": "The SLH series is made entirely of 304 stainless steel, ensuring no secondary contamination from feeding to packaging. It is especially suitable for the production of high-standard premix such as vitamins, minerals and enzymes. The equipment is equipped with automatic cleaning interfaces and pneumatic gates for easier cleaning and maintenance.",
+      "image": "https://images.unsplash.com/photo-1565043666747-69f6646db940?auto=format&fit=crop&w=800&q=80",
+      "parameters": [
+        { "label": "Production Capacity", "value": "0.5-6 t/h" },
+        { "label": "Mixer Volume", "value": "0.25-2 m³" },
+        { "label": "Mixing Uniformity", "value": "CV ≤ 3%" },
+        { "label": "Material", "value": "304 Stainless Steel" },
+        { "label": "Installed Power", "value": "15-55 kW" }
+      ],
+      "features": [
+        "304 stainless steel contact surfaces, rust and corrosion resistant",
+        "Dust-free feeding station improves workshop environment",
+        "High-precision micro scale with small batching error",
+        "Quick-disassembly structure for easy cleaning and maintenance"
+      ],
+      "application": "Suitable for bio-feed, high-end livestock and poultry premix, aquatic premix and feed additive production lines."
+    },
+    {
+      "id": "p3",
+      "slug": "mixer-swh",
+      "name": "SWH Twin-Shaft Paddle Mixer",
+      "category": "mixing",
+      "categoryName": "Feed Mixing Equipment",
+      "summary": "High-efficiency twin-shaft paddle mixing with short batch time and low residue, the core equipment of feed production lines.",
+      "description": "The SWH twin-shaft paddle mixer adopts a counter-rotating double-shaft paddle design, creating convection, shear and diffusion movements inside the machine for high mixing efficiency and good uniformity. The large-opening discharge door at the bottom enables rapid discharge with low residue.",
+      "image": "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80",
+      "parameters": [
+        { "label": "Effective Volume", "value": "0.5-12 m³" },
+        { "label": "Batch Mixing Time", "value": "30-90 s" },
+        { "label": "Mixing Uniformity", "value": "CV ≤ 5%" },
+        { "label": "Residue", "value": "≤ 0.3%" },
+        { "label": "Installed Power", "value": "7.5-75 kW" }
+      ],
+      "features": [
+        "Counter-rotating double shafts for more uniform mixing",
+        "Large discharge door for low residue and fast discharge",
+        "Pneumatic or electric discharge optional",
+        "Liquid addition system available for spraying requirements"
+      ],
+      "application": "Suitable for mixing sections of livestock and poultry feed, aquatic feed and ruminant feed; can be used standalone or in production lines."
+    },
+    {
+      "id": "p4",
+      "slug": "mixer-sjj",
+      "name": "SJJ Ribbon Mixer",
+      "category": "mixing",
+      "categoryName": "Feed Mixing Equipment",
+      "summary": "Gentle mixing without damaging material properties, especially suitable for premix, additives and fragile materials.",
+      "description": "The SJJ ribbon mixer creates a top-to-bottom circulating flow in the barrel through the combined movement of inner and outer ribbons, providing gentle stirring and low energy consumption. This model causes little damage to material particle size, making it suitable for mixing heat-sensitive and fragile materials such as vitamins and pharmaceutical additives.",
+      "image": "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&w=800&q=80",
+      "parameters": [
+        { "label": "Effective Volume", "value": "0.3-8 m³" },
+        { "label": "Batch Mixing Time", "value": "3-8 min" },
+        { "label": "Mixing Uniformity", "value": "CV ≤ 5%" },
+        { "label": "Residue", "value": "≤ 0.5%" },
+        { "label": "Installed Power", "value": "3-45 kW" }
+      ],
+      "features": [
+        "Ribbon structure for gentle mixing without dead corners",
+        "Multiple discharge outlet specifications available",
+        "Heating or cooling jacket optional",
+        "Smooth operation with low noise"
+      ],
+      "application": "Suitable for mixing processes in premix, concentrate, additives, chemical powder and food industries."
+    },
+    {
+      "id": "p5",
+      "slug": "dust-collector-tblm",
+      "name": "TBLM Pulse Jet Bag Filter",
+      "category": "dust",
+      "categoryName": "Dust Removal Equipment",
+      "summary": "Efficiently filters feed processing dust, meets emission standards and protects workshop environment and employee health.",
+      "description": "The TBLM pulse jet bag filter uses high-pressure pulse cleaning technology, with large filtration area, good cleaning effect and low operating resistance. It can be widely used in dust control at dust-generating points such as feeding inlets, hammer mills, mixers and packing machines in feed mills, helping customers meet environmental emission standards.",
+      "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
+      "parameters": [
+        { "label": "Air Volume", "value": "1500-30000 m³/h" },
+        { "label": "Filtration Area", "value": "24-480 m²" },
+        { "label": "Filtration Velocity", "value": "1.0-1.5 m/min" },
+        { "label": "Dust Removal Efficiency", "value": "≥ 99.5%" },
+        { "label": "Outlet Concentration", "value": "≤ 30 mg/m³" }
+      ],
+      "features": [
+        "High-pressure pulse cleaning extends filter bag life",
+        "Modular cabinet for easy installation and maintenance",
+        "Intelligent control system with differential pressure auto-cleaning",
+        "Low outlet concentration meets environmental requirements"
+      ],
+      "application": "Suitable for dust collection and air purification in feed mills, grain processing plants, flour mills and other powder industries."
+    },
+    {
+      "id": "p6",
+      "slug": "dust-collector-wjf",
+      "name": "WJF Venturi Dust Collector",
+      "category": "dust",
+      "categoryName": "Dust Removal Equipment",
+      "summary": "Wet dust removal solution suitable for high-temperature, high-humidity and flammable/explosive dust conditions.",
+      "description": "The WJF Venturi dust collector uses high-speed airflow formed by the Venturi tube to collide with liquid droplets, capturing dust in a water film. The equipment has a simple structure and stable operation, with good adaptability to high-temperature, high-humidity and oily dust, making it an ideal choice for dust removal in special sections of feed mills.",
+      "image": "https://images.unsplash.com/photo-1516937941348-c09e55483d5e?auto=format&fit=crop&w=800&q=80",
+      "parameters": [
+        { "label": "Air Volume", "value": "2000-20000 m³/h" },
+        { "label": "Dust Removal Efficiency", "value": "≥ 95%" },
+        { "label": "Water Consumption", "value": "0.1-0.5 t/h" },
+        { "label": "Pressure Loss", "value": "800-1500 Pa" },
+        { "label": "Material", "value": "Carbon Steel / Stainless Steel" }
+      ],
+      "features": [
+        "Wet collection with no secondary dust",
+        "Resistant to high temperature and humidity, strong adaptability",
+        "Can handle flammable and explosive dust",
+        "Water recycling system saves water"
+      ],
+      "application": "Suitable for high-temperature and high-humidity sections such as feed drying, cooling and extrusion, as well as dust removal in grain drying towers."
+    },
+    {
+      "id": "p7",
+      "slug": "hammer-mill-sfsp",
+      "name": "SFSP Hammer Mill",
+      "category": "crusher",
+      "categoryName": "Hammer Mills",
+      "summary": "Widely used in the grinding section of feed raw materials, with high grinding efficiency, low energy consumption and uniform particle size.",
+      "description": "The SFSP hammer mill adopts a water-drop-shaped grinding chamber design, effectively destroying the circulation layer and improving grinding efficiency. The rotor is dynamically balanced for smooth operation; hammers are made of high wear-resistant alloy material for long service life. The equipment can be equipped with a permanent magnet cylinder or pulse dust collector to form a dust-free grinding system.",
+      "image": "https://images.unsplash.com/photo-1590642916589-592bca10dfbf?auto=format&fit=crop&w=800&q=80",
+      "parameters": [
+        { "label": "Production Capacity", "value": "1-20 t/h" },
+        { "label": "Motor Power", "value": "11-160 kW" },
+        { "label": "Rotor Diameter", "value": "560-1120 mm" },
+        { "label": "Grinding Particle Size", "value": "1.5-8 mm" },
+        { "label": "Screen Specifications", "value": "Multiple hole sizes available" }
+      ],
+      "features": [
+        "Water-drop grinding chamber for high grinding efficiency",
+        "Symmetrical hammer arrangement, reversible use",
+        "Full-screen bottom structure for smooth discharge",
+        "Safety interlock for convenient operation and maintenance"
+      ],
+      "application": "Suitable for grinding feed raw materials such as corn, soybean meal and wheat bran; a key equipment in formula feed production lines."
+    },
+    {
+      "id": "p8",
+      "slug": "hammer-mill-sfsp-fine",
+      "name": "SFSP Ultra-Fine Hammer Mill",
+      "category": "crusher",
+      "categoryName": "Hammer Mills",
+      "summary": "Designed for ultra-fine grinding needs of aquatic feed and pet food, with fine particle size and high output.",
+      "description": "The SFSP ultra-fine hammer mill optimizes rotor tip speed and hammer geometry based on traditional hammer mill technology, combined with ultra-fine screens to achieve 60-120 mesh grinding fineness. The grinding chamber is equipped with a cooling system to effectively control temperature rise and protect nutritional components of materials.",
+      "image": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=800&q=80",
+      "parameters": [
+        { "label": "Production Capacity", "value": "0.5-8 t/h" },
+        { "label": "Motor Power", "value": "22-132 kW" },
+        { "label": "Grinding Fineness", "value": "60-120 mesh" },
+        { "label": "Temperature Rise Control", "value": "≤ 15℃" },
+        { "label": "Screen Area", "value": "Enlarged design" }
+      ],
+      "features": [
+        "High-speed rotor for high grinding fineness",
+        "Air cooling protects nutritional components",
+        "Pulse dust collector keeps workshop clean",
+        "Automatic feeding for stable output"
+      ],
+      "application": "Suitable for ultra-fine grinding processes of shrimp and crab feed, extruded aquatic feed, pet food and specialty feed."
+    }
+  ]
+}

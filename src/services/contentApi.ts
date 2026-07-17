@@ -32,6 +32,20 @@ export interface ChatKnowledgeData {
   }[];
 }
 
+let currentLocale = "zh";
+
+export function setContentLocale(locale: string) {
+  currentLocale = locale;
+}
+
+export function getContentLocale(): string {
+  return currentLocale;
+}
+
+function getContentPath(file: string): string {
+  return `/content/${currentLocale}/${file}`;
+}
+
 async function fetchJson<T>(path: string): Promise<T> {
   const response = await fetch(path);
   if (!response.ok) {
@@ -41,9 +55,9 @@ async function fetchJson<T>(path: string): Promise<T> {
 }
 
 export const contentApi = {
-  getCompany: () => fetchJson<CompanyInfo>("/content/company.json"),
-  getHome: () => fetchJson<HomeConfig>("/content/home.json"),
-  getProducts: () => fetchJson<ProductsData>("/content/products.json"),
-  getArticles: () => fetchJson<ArticlesData>("/content/articles.json"),
-  getChatKnowledge: () => fetchJson<ChatKnowledgeData>("/content/chat-knowledge.json"),
+  getCompany: () => fetchJson<CompanyInfo>(getContentPath("company.json")),
+  getHome: () => fetchJson<HomeConfig>(getContentPath("home.json")),
+  getProducts: () => fetchJson<ProductsData>(getContentPath("products.json")),
+  getArticles: () => fetchJson<ArticlesData>(getContentPath("articles.json")),
+  getChatKnowledge: () => fetchJson<ChatKnowledgeData>(getContentPath("chat-knowledge.json")),
 };

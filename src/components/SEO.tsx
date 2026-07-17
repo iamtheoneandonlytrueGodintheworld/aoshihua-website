@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "@/i18n/useTranslation";
 
 interface SEOProps {
   title?: string;
@@ -13,14 +14,11 @@ interface SEOProps {
   noindex?: boolean;
 }
 
-const siteName = "奥世华机械制造有限公司";
-const defaultDescription =
-  "奥世华机械制造有限公司专注饲料机械研发、生产与销售，主营预混料机组、饲料混合设备、饲料除尘设备、锤片粉碎机等，为客户提供从方案设计到安装调试的一站式服务。";
 const defaultImage = "https://aoshihua-website-v4.vercel.app/og-image.png";
 
 export default function SEO({
   title,
-  description = defaultDescription,
+  description,
   keywords,
   ogTitle,
   ogDescription,
@@ -30,7 +28,17 @@ export default function SEO({
   jsonLd,
   noindex = false,
 }: SEOProps) {
+  const { locale } = useTranslation();
+
+  const siteName =
+    locale === "zh" ? "奥世华机械制造有限公司" : "Aoshihua Machinery Manufacturing Co., Ltd.";
+  const defaultDescription =
+    locale === "zh"
+      ? "奥世华机械制造有限公司专注饲料机械研发、生产与销售，主营预混料机组、饲料混合设备、饲料除尘设备、锤片粉碎机等，为客户提供从方案设计到安装调试的一站式服务。"
+      : "Aoshihua Machinery Manufacturing Co., Ltd. specializes in R&D, production and sales of feed machinery, including premix units, feed mixing equipment, dust removal equipment and hammer mills.";
+
   const fullTitle = title ? `${title} - ${siteName}` : siteName;
+  const finalDescription = description || defaultDescription;
 
   useEffect(() => {
     document.title = fullTitle;
@@ -45,11 +53,11 @@ export default function SEO({
       meta.content = content;
     };
 
-    setMeta("description", description);
+    setMeta("description", finalDescription);
     if (keywords) setMeta("keywords", keywords);
 
     setMeta("og:title", ogTitle || fullTitle, "property");
-    setMeta("og:description", ogDescription || description, "property");
+    setMeta("og:description", ogDescription || finalDescription, "property");
     setMeta("og:image", ogImage, "property");
     setMeta("og:site_name", siteName, "property");
     setMeta("og:type", "website", "property");
@@ -57,7 +65,7 @@ export default function SEO({
 
     setMeta("twitter:card", "summary_large_image");
     setMeta("twitter:title", ogTitle || fullTitle);
-    setMeta("twitter:description", ogDescription || description);
+    setMeta("twitter:description", ogDescription || finalDescription);
     setMeta("twitter:image", ogImage);
 
     if (noindex) {
@@ -97,7 +105,7 @@ export default function SEO({
       const ld = document.getElementById("json-ld");
       if (ld) ld.remove();
     };
-  }, [fullTitle, description, keywords, ogTitle, ogDescription, ogImage, ogUrl, canonical, jsonLd, noindex]);
+  }, [fullTitle, finalDescription, keywords, ogTitle, ogDescription, ogImage, ogUrl, canonical, jsonLd, noindex, siteName]);
 
   return null;
 }

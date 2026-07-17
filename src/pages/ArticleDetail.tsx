@@ -4,11 +4,16 @@ import { useArticles, getArticleBySlug } from "@/data/articles";
 import ScrollReveal from "@/components/ScrollReveal";
 import Loading from "@/components/Loading";
 import SEO from "@/components/SEO";
+import { useTranslation } from "@/i18n/useTranslation";
 
 export default function ArticleDetail() {
   const { slug } = useParams<{ slug: string }>();
   const { data: articlesData, isLoading } = useArticles();
+  const { t, locale } = useTranslation();
   const article = articlesData && slug ? getArticleBySlug(articlesData.articles, slug) : undefined;
+
+  const orgName =
+    locale === "zh" ? "奥世华机械制造有限公司" : "Aoshihua Machinery Manufacturing Co., Ltd.";
 
   if (isLoading) {
     return (
@@ -21,9 +26,9 @@ export default function ArticleDetail() {
   if (!article) {
     return (
       <div className="pt-32 text-center">
-        <h1 className="text-2xl font-bold text-navy-900">文章未找到</h1>
+        <h1 className="text-2xl font-bold text-navy-900">{t("articleDetail.notFound")}</h1>
         <Link to="/news" className="mt-4 inline-block text-brand-600">
-          返回新闻资讯
+          {t("articleDetail.backToNews")}
         </Link>
       </div>
     );
@@ -50,11 +55,11 @@ export default function ArticleDetail() {
           datePublished: article.publishedAt,
           author: {
             "@type": "Organization",
-            name: "奥世华机械制造有限公司",
+            name: orgName,
           },
           publisher: {
             "@type": "Organization",
-            name: "奥世华机械制造有限公司",
+            name: orgName,
             logo: {
               "@type": "ImageObject",
               url: "https://aoshihua-website-v4.vercel.app/favicon.svg",
@@ -74,7 +79,7 @@ export default function ArticleDetail() {
             className="inline-flex items-center gap-1 text-navy-300 hover:text-white transition-colors mb-4"
           >
             <ArrowLeft size={18} />
-            返回新闻列表
+            {t("articleDetail.backToNews")}
           </Link>
           <span className="inline-block px-3 py-1 bg-brand-500/20 text-brand-400 text-sm font-medium rounded mb-4">
             {article.category}
@@ -89,7 +94,7 @@ export default function ArticleDetail() {
             </span>
             <span className="flex items-center gap-1">
               <Tag size={16} />
-              {article.tags.join("、")}
+              {article.tags.join(locale === "zh" ? "、" : ", ")}
             </span>
           </div>
         </div>
@@ -116,15 +121,14 @@ export default function ArticleDetail() {
             <aside className="lg:col-span-1">
               <ScrollReveal>
                 <div className="p-6 bg-navy-50 rounded-2xl sticky top-24">
-                  <h3 className="text-lg font-bold text-navy-900 mb-4">相关文章</h3>
+                  <h3 className="text-lg font-bold text-navy-900 mb-4">
+                    {t("articleDetail.relatedArticles")}
+                  </h3>
                   {relatedArticles.length > 0 ? (
                     <ul className="space-y-4">
                       {relatedArticles.map((a) => (
                         <li key={a.id}>
-                          <Link
-                            to={`/news/${a.slug}`}
-                            className="group block"
-                          >
+                          <Link to={`/news/${a.slug}`} className="group block">
                             <h4 className="text-sm font-semibold text-navy-800 group-hover:text-brand-600 transition-colors line-clamp-2">
                               {a.title}
                             </h4>
@@ -136,7 +140,7 @@ export default function ArticleDetail() {
                       ))}
                     </ul>
                   ) : (
-                    <p className="text-sm text-navy-500">暂无相关文章</p>
+                    <p className="text-sm text-navy-500">{t("articleDetail.noRelated")}</p>
                   )}
                 </div>
               </ScrollReveal>

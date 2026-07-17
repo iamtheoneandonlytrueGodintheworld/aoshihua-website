@@ -31,6 +31,6 @@ export function getArticleBySlug(articles: Article[], slug: string): Article | u
 }
 
 export function getArticlesByCategory(articles: Article[], category: string): Article[] {
-  if (category === "全部") return articles;
+  if (category === "全部" || category === "All") return articles;
   return articles.filter((a) => a.category === category);
 }

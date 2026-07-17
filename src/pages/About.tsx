@@ -3,17 +3,34 @@ import SectionTitle from "@/components/SectionTitle";
 import ScrollReveal from "@/components/ScrollReveal";
 import Loading from "@/components/Loading";
 import SEO from "@/components/SEO";
+import { useTranslation } from "@/i18n/useTranslation";
 import { Award, CheckCircle2 } from "lucide-react";
 
 export default function About() {
   const { data: companyInfo, isLoading } = useCompany();
+  const { t, locale } = useTranslation();
+
+  const metaTitle = locale === "zh" ? "关于我们" : "About Us";
+  const metaDescription =
+    locale === "zh"
+      ? "了解奥世华机械制造有限公司的企业文化、发展历程与资质荣誉，十六年深耕饲料机械行业，以技术创新驱动发展，以品质服务赢得客户信赖。"
+      : "Learn about Aoshihua Machinery Manufacturing Co., Ltd. corporate culture, development history and honors. 16 years dedicated to feed machinery industry.";
+  const metaKeywords =
+    locale === "zh"
+      ? "奥世华机械,关于奥世华,饲料机械厂家,企业文化,发展历程"
+      : "Aoshihua Machinery, about Aoshihua, feed machinery manufacturer, corporate culture, milestones";
+  const orgName =
+    companyInfo?.name ||
+    (locale === "zh" ? "奥世华机械制造有限公司" : "Aoshihua Machinery Manufacturing Co., Ltd.");
 
   if (isLoading) {
     return (
       <div className="pt-20">
         <section className="bg-navy-900 py-16 md:py-24">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-3xl md:text-5xl font-bold text-white font-display">关于奥世华</h1>
+            <h1 className="text-3xl md:text-5xl font-bold text-white font-display">
+              {t("about.pageTitle")}
+            </h1>
           </div>
         </section>
         <Loading />
@@ -24,7 +41,7 @@ export default function About() {
   if (!companyInfo) {
     return (
       <div className="pt-32 text-center">
-        <p className="text-navy-600">内容加载失败</p>
+        <p className="text-navy-600">{t("common.error")}</p>
       </div>
     );
   }
@@ -32,19 +49,19 @@ export default function About() {
   return (
     <div className="pt-20">
       <SEO
-        title="关于我们"
-        description="了解奥世华机械制造有限公司的企业文化、发展历程与资质荣誉，十六年深耕饲料机械行业，以技术创新驱动发展，以品质服务赢得客户信赖。"
-        keywords="奥世华机械,关于奥世华,饲料机械厂家,企业文化,发展历程"
+        title={metaTitle}
+        description={metaDescription}
+        keywords={metaKeywords}
         ogUrl="https://aoshihua-website-v4.vercel.app/about"
         canonical="https://aoshihua-website-v4.vercel.app/about"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "AboutPage",
-          name: "关于奥世华",
+          name: metaTitle,
           url: "https://aoshihua-website-v4.vercel.app/about",
           mainEntity: {
             "@type": "Organization",
-            name: companyInfo?.name || "奥世华机械制造有限公司",
+            name: orgName,
             description: companyInfo?.description,
             url: "https://aoshihua-website-v4.vercel.app/",
             logo: "https://aoshihua-website-v4.vercel.app/favicon.svg",
@@ -55,10 +72,10 @@ export default function About() {
       <section className="bg-navy-900 py-16 md:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl md:text-5xl font-bold text-white font-display animate-fade-up">
-            关于奥世华
+            {t("about.pageTitle")}
           </h1>
           <p className="mt-4 text-navy-300 max-w-2xl mx-auto animate-fade-up">
-            十六年深耕饲料机械行业，以技术创新驱动发展，以品质服务赢得客户信赖
+            {t("about.subtitle")}
           </p>
         </div>
       </section>
@@ -71,12 +88,12 @@ export default function About() {
               <div className="grid grid-cols-2 gap-4">
                 <img
                   src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=400&q=80"
-                  alt="生产车间"
+                  alt={t("about.introAlt1")}
                   className="rounded-xl shadow-lg"
                 />
                 <img
                   src="https://images.unsplash.com/photo-1565043666747-69f6646db940?auto=format&fit=crop&w=400&q=80"
-                  alt="设备细节"
+                  alt={t("about.introAlt2")}
                   className="rounded-xl shadow-lg mt-8"
                 />
               </div>
@@ -115,8 +132,8 @@ export default function About() {
       <section className="py-16 md:py-24 bg-navy-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
-            title="企业文化"
-            subtitle="以客户为中心，以品质为生命，以创新为动力"
+            title={t("about.values")}
+            subtitle={t("about.cultureSubtitle")}
           />
           <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
             {companyInfo.values.map((value, index) => (
@@ -138,8 +155,8 @@ export default function About() {
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
-            title="发展历程"
-            subtitle="见证奥世华机械的成长足迹"
+            title={t("about.milestones")}
+            subtitle={t("about.timelineSubtitle")}
           />
           <div className="mt-14 max-w-4xl mx-auto">
             {companyInfo.milestones.map((milestone, index) => (
@@ -179,8 +196,8 @@ export default function About() {
       <section className="py-16 md:py-24 bg-navy-900">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
-            title="资质荣誉"
-            subtitle="权威认证，实力见证"
+            title={t("about.honors")}
+            subtitle={t("about.honorsSubtitle")}
             light
           />
           <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

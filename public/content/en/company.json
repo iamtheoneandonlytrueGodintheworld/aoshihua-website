@@ -1,0 +1,90 @@
+{
+  "values": [
+    {
+      "title": "Quality First",
+      "desc": "Strict control from raw material procurement to final delivery, ensuring every piece of equipment is stable and reliable."
+    },
+    {
+      "title": "Technology Innovation",
+      "desc": "Continuous R&D investment, keeping up with industry trends to provide customers with more efficient and energy-saving solutions."
+    },
+    {
+      "title": "Service Oriented",
+      "desc": "7×24 response mechanism with a professional technical team tracking the whole process, giving customers peace of mind."
+    }
+  ],
+  "milestones": [
+    {
+      "year": "2008",
+      "title": "Company Founded",
+      "desc": "Aoshihua Machinery was established in Changzhou, focusing on feed machinery."
+    },
+    {
+      "year": "2012",
+      "title": "Product Line Expansion",
+      "desc": "Premix units and hammer mill series were launched to the market."
+    },
+    {
+      "year": "2016",
+      "title": "Technology Upgrade",
+      "desc": "Introduced CNC machining centers, greatly improving production precision and efficiency."
+    },
+    {
+      "year": "2020",
+      "title": "Market Expansion",
+      "desc": "Products exported to Southeast Asia, Africa and many other countries and regions."
+    },
+    {
+      "year": "2024",
+      "title": "Intelligent Transformation",
+      "desc": "Launched AI-assisted equipment selection and remote operation & maintenance services."
+    }
+  ],
+  "honors": [
+    {
+      "title": "ISO 9001 Certified",
+      "desc": "Certified enterprise for quality management system"
+    },
+    {
+      "title": "High-Tech Enterprise",
+      "desc": "Recognized as provincial high-tech enterprise"
+    },
+    {
+      "title": "50+ Patents",
+      "desc": "Accumulated invention patents and utility model patents"
+    },
+    {
+      "title": "AAA Credit Rating",
+      "desc": "Excellent credit rating from banks and customers"
+    }
+  ],
+  "name": "Aoshihua Machinery Manufacturing Co., Ltd.",
+  "phone": "400-888-6688",
+  "address": "No. 88 Aoshihua Road, Wujin High-Tech Industrial Development Zone, Changzhou, Jiangsu, China",
+  "email": "sales@aoshihua-mfg.com",
+  "description": "Aoshihua Machinery Manufacturing Co., Ltd. is a high-tech enterprise specializing in the R&D, production and sales of feed machinery. With many years of industry experience, our products cover premix units, feed mixing equipment, feed dust removal equipment, hammer mills and other series, widely used in livestock and poultry feed, aquatic feed, pet feed and other fields. Driven by technological innovation and oriented by customer needs, we provide customers with one-stop services from solution design, equipment manufacturing to installation and commissioning.",
+  "slogan": "Precision Manufacturing for Feed Machinery, Empowering Modern Agriculture",
+  "foundedYear": 2008,
+  "stats": [
+    {
+      "value": 16,
+      "suffix": "+",
+      "label": "Years of Experience"
+    },
+    {
+      "value": 3000,
+      "suffix": "+",
+      "label": "Equipment Delivered"
+    },
+    {
+      "value": 60,
+      "suffix": "+",
+      "label": "Countries & Regions"
+    },
+    {
+      "value": 98,
+      "suffix": "%",
+      "label": "Customer Satisfaction"
+    }
+  ]
+}
