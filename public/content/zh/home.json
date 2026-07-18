@@ -1,21 +1,53 @@
 {
-  "heroTitle": "精工智造饲料机械",
-  "heroSubtitle": "助力现代农牧发展",
-  "heroBackground": "/images/统一红框内文字字体.png",
-  "ctaPrimary": "浏览产品",
   "ctaSecondary": "联系我们",
-  "introImage": "/images/统一红框内文字字体.png",
-  "aboutText": "奥世华机械制造有限公司成立于 2008 年，专注于饲料机械研发、生产与销售，产品远销 60 多个国家和地区。公司拥有 50 余项专利，是省级高新技术企业。",
-  "stats": [
-    { "value": 16, "suffix": "+", "label": "年行业经验" },
-    { "value": 3000, "suffix": "+", "label": "台设备出货量" },
-    { "value": 60, "suffix": "+", "label": "服务国家和地区" },
-    { "value": 98, "suffix": "%", "label": "客户满意度" }
-  ],
+  "heroBackground": "/images/统一红框内文字字体.png",
   "advantages": [
-    { "icon": "Award", "title": "品质保证", "desc": "ISO 9001 质量管理体系认证，全流程严格把控" },
-    { "icon": "ShieldCheck", "title": "技术领先", "desc": "50+ 项专利技术，持续创新满足市场需求" },
-    { "icon": "HeadphonesIcon", "title": "服务贴心", "desc": "7×24 小时响应，专业技术团队全程支持" },
-    { "icon": "Leaf", "title": "绿色环保", "desc": "低能耗设计，配套除尘方案，助力环保达标" }
+    {
+      "icon": "Award",
+      "title": "品质保证",
+      "desc": "ISO 9001 质量管理体系认证，全流程严格把控"
+    },
+    {
+      "icon": "ShieldCheck",
+      "title": "技术领先",
+      "desc": "50+ 项专利技术，持续创新满足市场需求"
+    },
+    {
+      "icon": "HeadphonesIcon",
+      "title": "服务贴心",
+      "desc": "7×24 小时响应，专业技术团队全程支持"
+    },
+    {
+      "icon": "Leaf",
+      "title": "绿色环保",
+      "desc": "低能耗设计，配套除尘方案，助力环保达标"
+    }
+  ],
+  "introImage": "/images/统一红框内文字字体.png",
+  "ctaPrimary": "浏览产品",
+  "heroSubtitle": "助力现代农牧发展",
+  "aboutText": "奥世华机械制造有限公司成立于 2016 年，专注于饲料机械研发、生产与销售，产品远销 60 多个国家和地区。公司拥有 50 余项专利，是省级高新技术企业。",
+  "heroTitle": "精工智造饲料机械",
+  "stats": [
+    {
+      "value": 10,
+      "suffix": "+",
+      "label": "年行业经验"
+    },
+    {
+      "value": 3000,
+      "suffix": "+",
+      "label": "台设备出货量"
+    },
+    {
+      "value": 60,
+      "suffix": "+",
+      "label": "服务国家和地区"
+    },
+    {
+      "value": 98,
+      "suffix": "%",
+      "label": "客户满意度"
+    }
   ]
 }
