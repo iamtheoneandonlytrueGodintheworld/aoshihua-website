@@ -7,6 +7,12 @@ import Loading from "@/components/Loading";
 import SEO from "@/components/SEO";
 import { useTranslation } from "@/i18n/useTranslation";
 
+function normalizeTel(phone: string | undefined): string {
+  if (!phone) return "#";
+  const digits = phone.replace(/\D/g, "");
+  return digits ? `tel:${digits}` : "#";
+}
+
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -141,7 +147,7 @@ export default function ProductDetail() {
               <ScrollReveal delay={200}>
                 <div className="mt-8 flex flex-wrap gap-4">
                   <a
-                    href={`tel:${companyPhone}`}
+                    href={normalizeTel(companyPhone)}
                     className="inline-flex items-center gap-2 px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-md transition-all"
                   >
                     <Phone size={18} />

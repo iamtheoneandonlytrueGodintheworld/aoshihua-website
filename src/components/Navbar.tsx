@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Factory } from "lucide-react";
 import { useCompany } from "@/data/company";
 import { useTranslation } from "@/i18n/useTranslation";
+import { useChatStore } from "@/store/chatStore";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Navbar() {
@@ -11,6 +12,7 @@ export default function Navbar() {
   const location = useLocation();
   const { data: companyInfo, isLoading } = useCompany();
   const { t } = useTranslation();
+  const openChat = useChatStore((state) => state.open);
 
   const navItems = [
     { label: t("nav.home"), path: "/" },
@@ -31,7 +33,6 @@ export default function Navbar() {
   }, [location.pathname]);
 
   const companyName = companyInfo?.name || (t("nav.langZh") === "中" ? "奥世华机械" : "Aoshihua Machinery");
-  const companyPhone = companyInfo?.phone || "#";
   const companyTagline = companyInfo?.slogan || (t("nav.langZh") === "中" ? "精工智造 · 品质为先" : "Precision Manufacturing · Quality First");
 
   return (
@@ -77,12 +78,12 @@ export default function Navbar() {
 
           <div className="hidden md:flex items-center gap-3">
             <LanguageSwitcher />
-            <a
-              href={`tel:${companyPhone}`}
+            <button
+              onClick={openChat}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold rounded-md transition-all shadow-lg shadow-brand-500/20 hover:shadow-brand-500/40 hover:-translate-y-0.5"
             >
               {t("nav.consult")}
-            </a>
+            </button>
           </div>
 
           <div className="flex items-center gap-2 md:hidden">
@@ -120,12 +121,12 @@ export default function Navbar() {
             </li>
           ))}
           <li className="pt-2">
-            <a
-              href={`tel:${companyPhone}`}
+            <button
+              onClick={openChat}
               className="block w-full text-center px-4 py-3 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-md"
             >
               {t("nav.consult")}
-            </a>
+            </button>
           </li>
         </ul>
       </div>

@@ -14,6 +14,10 @@ export interface CompanyInfo {
   milestones: { year: string; title: string; desc: string }[];
   honors: { title: string; desc: string }[];
   stats: { value: number; suffix: string; label: string }[];
+  wechatId: string;
+  wechatQr: string;
+  mapLat: number;
+  mapLng: number;
 }
 
 export const companyApi = {

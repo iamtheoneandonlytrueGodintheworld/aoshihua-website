@@ -7,6 +7,12 @@ import Loading from "@/components/Loading";
 import SEO from "@/components/SEO";
 import { useTranslation } from "@/i18n/useTranslation";
 
+function normalizeTel(phone: string | undefined): string {
+  if (!phone) return "#";
+  const digits = phone.replace(/\D/g, "");
+  return digits ? `tel:${digits}` : "#";
+}
+
 export default function Contact() {
   const { data: companyInfo, isLoading } = useCompany();
   const { t, locale } = useTranslation();
@@ -23,12 +29,23 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // 模拟提交
+
+    const subject = encodeURIComponent(
+      locale === "zh" ? `网站留言：${formData.name}` : `Website Inquiry: ${formData.name}`
+    );
+    const body = encodeURIComponent(
+      locale === "zh"
+        ? `姓名：${formData.name}\n电话：${formData.phone}\n邮箱：${formData.email || "未填写"}\n公司：${formData.company || "未填写"}\n需求描述：\n${formData.message}`
+        : `Name: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email || "Not provided"}\nCompany: ${formData.company || "Not provided"}\nRequirements:\n${formData.message}`
+    );
+
+    window.location.href = `mailto:${companyEmail}?subject=${subject}&body=${body}`;
+
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
       setFormData({ name: "", phone: "", email: "", company: "", message: "" });
-    }, 1200);
+    }, 800);
   };
 
   if (isLoading) {
@@ -111,7 +128,7 @@ export default function Contact() {
                 </div>
                 <h3 className="text-lg font-bold text-navy-900">{t("contact.serviceHotline")}</h3>
                 <a
-                  href={`tel:${companyPhone}`}
+                  href={normalizeTel(companyPhone)}
                   className="mt-2 block text-navy-600 hover:text-brand-600 transition-colors"
                 >
                   {companyPhone}
@@ -154,18 +171,29 @@ export default function Contact() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <ScrollReveal>
               <div className="h-full min-h-[400px] bg-navy-200 rounded-2xl overflow-hidden relative">
-                <img
-                  src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80"
-                  alt={t("contact.mapAlt")}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-navy-900/40 flex items-center justify-center">
-                  <div className="text-center text-white p-6">
-                    <MapPin size={40} className="mx-auto mb-3 text-brand-400" />
-                    <p className="font-bold text-lg">{companyName}</p>
-                    <p className="mt-1 text-navy-100">{companyAddress}</p>
-                  </div>
-                </div>
+                {companyInfo?.mapLat && companyInfo?.mapLng ? (
+                  <iframe
+                    title={companyName}
+                    src={`https://www.openstreetmap.org/export/embed.html?bbox=${companyInfo.mapLng - 0.02}%2C${companyInfo.mapLat - 0.02}%2C${companyInfo.mapLng + 0.02}%2C${companyInfo.mapLat + 0.02}&layer=mapnik&marker=${companyInfo.mapLat}%2C${companyInfo.mapLng}`}
+                    className="w-full h-full min-h-[400px] border-0"
+                    loading="lazy"
+                  />
+                ) : (
+                  <>
+                    <img
+                      src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80"
+                      alt={t("contact.mapAlt")}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-navy-900/40 flex items-center justify-center">
+                      <div className="text-center text-white p-6">
+                        <MapPin size={40} className="mx-auto mb-3 text-brand-400" />
+                        <p className="font-bold text-lg">{companyName}</p>
+                        <p className="mt-1 text-navy-100">{companyAddress}</p>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </ScrollReveal>
 

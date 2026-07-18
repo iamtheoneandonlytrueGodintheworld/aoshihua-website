@@ -25,6 +25,12 @@ function getIcon(name: string): LucideIcon {
   return iconMap[name] || Award;
 }
 
+function normalizeTel(phone: string | undefined): string {
+  if (!phone) return "#";
+  const digits = phone.replace(/\D/g, "");
+  return digits ? `tel:${digits}` : "#";
+}
+
 export default function Home() {
   const { data: productsData, isLoading: productsLoading } = useProducts();
   const { data: articlesData, isLoading: articlesLoading } = useArticles();
@@ -268,7 +274,7 @@ export default function Home() {
                 <ArrowRight size={18} />
               </Link>
               <a
-                href={`tel:${companyInfo.phone}`}
+                href={normalizeTel(companyInfo.phone)}
                 className="inline-flex items-center gap-2 px-8 py-4 bg-brand-700 hover:bg-brand-800 text-white font-semibold rounded-md transition-all"
               >
                 {ctaLabels.call}

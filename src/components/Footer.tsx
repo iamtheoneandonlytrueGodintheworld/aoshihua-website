@@ -1,14 +1,22 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Factory, Phone, Mail, MapPin } from "lucide-react";
+import { Factory, Phone, Mail, MapPin, X } from "lucide-react";
 import { useCompany } from "@/data/company";
 import { useTranslation } from "@/i18n/useTranslation";
 
 const footerLinkKeys = ["home", "about", "products", "news", "contact"] as const;
 const productCategoryKeys = ["premix", "mixing", "dust", "crusher"] as const;
 
+function normalizeTel(phone: string | undefined): string {
+  if (!phone) return "#";
+  const digits = phone.replace(/\D/g, "");
+  return digits ? `tel:${digits}` : "#";
+}
+
 export default function Footer() {
   const { data: companyInfo } = useCompany();
   const { t } = useTranslation();
+  const [showWechat, setShowWechat] = useState(false);
 
   const companyName = companyInfo?.name || (t("nav.langZh") === "中" ? "奥世华机械制造有限公司" : "Aoshihua Machinery Manufacturing Co., Ltd.");
   const companyPhone = companyInfo?.phone || "400-888-6688";
@@ -52,15 +60,15 @@ export default function Footer() {
               {companyDesc}
             </p>
             <div className="flex gap-3">
-              <a
-                href="#"
+              <button
+                onClick={() => setShowWechat(true)}
                 className="w-9 h-9 rounded-full bg-navy-900 hover:bg-brand-500 flex items-center justify-center transition-colors"
                 aria-label="WeChat"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                   <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.27-.027-.407-.03zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z" />
                 </svg>
-              </a>
+              </button>
             </div>
           </div>
 
@@ -106,7 +114,7 @@ export default function Footer() {
                 <Phone size={18} className="text-brand-500 mt-0.5 shrink-0" />
                 <div>
                   <p className="text-xs text-navy-400">{t("contact.phone")}</p>
-                  <a href={`tel:${companyPhone}`} className="text-sm hover:text-white transition-colors">
+                  <a href={normalizeTel(companyPhone)} className="text-sm hover:text-white transition-colors">
                     {companyPhone}
                   </a>
                 </div>
@@ -140,6 +148,50 @@ export default function Footer() {
           </p>
         </div>
       </div>
+
+      {/* WeChat QR Modal */}
+      {showWechat && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-navy-950/80 backdrop-blur-sm p-4"
+          onClick={() => setShowWechat(false)}
+        >
+          <div
+            className="bg-white rounded-2xl p-6 max-w-sm w-full text-center relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowWechat(false)}
+              className="absolute top-3 right-3 text-navy-400 hover:text-navy-700"
+              aria-label="Close"
+            >
+              <X size={20} />
+            </button>
+            <h3 className="text-lg font-bold text-navy-900 mb-2">
+              {t("nav.langZh") === "中" ? "添加微信" : "Add on WeChat"}
+            </h3>
+            {companyInfo?.wechatQr ? (
+              <img
+                src={companyInfo.wechatQr}
+                alt="WeChat QR"
+                className="w-48 h-48 mx-auto rounded-lg object-contain border border-navy-100"
+              />
+            ) : (
+              <div className="w-48 h-48 mx-auto rounded-lg bg-navy-100 flex items-center justify-center text-navy-400 text-sm">
+                {t("nav.langZh") === "中" ? "请上传微信二维码" : "Please upload WeChat QR"}
+              </div>
+            )}
+            {companyInfo?.wechatId && (
+              <p className="mt-4 text-navy-600">
+                {t("nav.langZh") === "中" ? "微信号：" : "WeChat ID: "}
+                <span className="font-semibold text-navy-900">{companyInfo.wechatId}</span>
+              </p>
+            )}
+            <p className="mt-2 text-xs text-navy-400">
+              {t("nav.langZh") === "中" ? "打开微信扫一扫添加" : "Open WeChat and scan to add"}
+            </p>
+          </div>
+        </div>
+      )}
     </footer>
   );
 }
